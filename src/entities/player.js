@@ -2,10 +2,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, texture) {
 		super(scene, x, y, texture); 
 		this.clavier = scene.input.keyboard.addKeys({
-			left: Phaser.Input.Keyboard.KeyCodes.Q,
-			right: Phaser.Input.Keyboard.KeyCodes.D,
-			space: Phaser.Input.Keyboard.KeyCodes.SPACE,
-			attack: Phaser.Input.Keyboard.KeyCodes.V,
+			left: Phaser.Input.Keyboard.KeyCodes.LEFT,
+			right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
+			up: Phaser.Input.Keyboard.KeyCodes.UP,
+			attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
 			parler: Phaser.Input.Keyboard.KeyCodes.A,
 		});
         this.pad; // récupère la manette
@@ -16,50 +16,52 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.direction = "right"; 
         this.body.setSize(15, 15);
 		this.body.setOffset(9, 50);
+
+        // Propriétés de déplacement
+        
+        this.jumpHeight = 300; // Hauteur du saut en pixels
+        this.isJumping = false; // Indique si le joueur est en train de sauter
+        this.canJump = true; // Indique si le joueur peut sauter à nouveau
     }
 
     update() {
-        var mouvement = new Phaser.Math.Vector2(0, 0);
-
-		// Mouvement
-		if (this.clavier.left.isDown || this.pad?.left) {
-			mouvement.x = -1;
-			this.direction = "left"; 
-		} 
-		else if (this.clavier.right.isDown || this.pad?.right) {
-			mouvement.x = 1;
-			this.direction = "right"; 
-		} 
-		else {
-			mouvement.x = 0;
-			
-		}
-		if (this.clavier.space.isDown || this.pad?.up) {
-			mouvement.y = -1;
-			this.direction = "up"; 
-            this.anims.play("Idle",true);
-		}
-		else {
-			mouvement.y = 0;
-		}
-		
-		mouvement.normalize();
-		this.setVelocity(mouvement.x * PLAYER_SPEED, mouvement.y * PLAYER_SPEED );
-		
-		if (mouvement.x < 0) {
+		// Déplacement horizontal
+		if (this.clavier.left.isDown) {
+			this.body.setVelocityX(-PLAYER_SPEED);
+			this.direction = "left";
 			this.flipX = true;
-		}
-		else if (mouvement.x > 0) {
+			if (!this.isJumping) {
+				this.play("Run", true);
+			}
+		} else if (this.clavier.right.isDown) {
+			this.body.setVelocityX(PLAYER_SPEED);
+			this.direction = "right";
 			this.flipX = false;
+			if (!this.isJumping) {
+				this.play("Run", true);
+			}
+		} else {
+			this.body.setVelocityX(0);
+			if (!this.isJumping) {
+				this.play("Idle", true);
+			}
 		}
-		
-		if(mouvement.length() != 0) {
-			
-			this.anims.play("Idle",true);
 
+		// Saut
+		if (this.clavier.up.isDown && this.canJump && !this.isJumping) {
+			this.body.setVelocityY(-this.jumpHeight);
+			this.isJumping = true;
+			this.canJump = false;
+			this.play("Jump", true);
 		}
-		
+
+		// Si le joueur est en train de sauter et qu'il touche le sol, on l'indique
+		if (this.body.onFloor()) {
+			this.isJumping = false;
+			this.canJump = true;
+		}
     }
+
     CreateAnimations(){
 		this.scene.anims.create({
 			key: 'Idle',
@@ -68,11 +70,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			repeat: -1
 		});
 		this.scene.anims.create({
-			key: 'Jump',
-			frames: this.scene.anims.generateFrameNumbers('perso', {start:6, end:16}),
-			frameRate: 8,
+			key: 'Run',
+			frames: this.scene.anims.generateFrameNumbers('perso', {start:8, end:15}),
+			frameRate: 10,
 			repeat: -1
 		});
-		
+		this.scene.anims.create({
+			key: 'Jump',
+			frames: this.scene.anims.generateFrameNumbers('perso', {start:6, end:16}),
+			frameRate: 10,
+			repeat: -1
+		});
 	}
 }

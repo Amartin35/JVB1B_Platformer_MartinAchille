@@ -26,15 +26,12 @@ var config = {
 		arcade: {
 			debug: true,
 			gravity: {
-				y: 500 // gravité verticale : acceleration ddes corps en pixels par seconde
+				y: 400 // gravité verticale : acceleration ddes corps en pixels par seconde
 			},
 		},
 		input: {
 			gamepad: true
 		},
-	},
-	input: {
-		gamepad: true
 	},
 	fps: {
 		target: 60,

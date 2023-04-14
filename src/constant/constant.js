@@ -1,4 +1,7 @@
-const PLAYER_SPEED = 500
+
+
+// PLAYER
+const PLAYER_SPEED = 300
 // JEU 
 const GAME_HEIGHT = 288
 const GAME_WIDTH = 512
