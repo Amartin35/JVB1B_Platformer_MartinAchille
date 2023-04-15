@@ -26,7 +26,7 @@ var config = {
 		arcade: {
 			debug: true,
 			gravity: {
-				y: 400 // gravité verticale : acceleration ddes corps en pixels par seconde
+				y: 900 // gravité verticale : acceleration ddes corps en pixels par seconde
 			},
 		},
 		input: {

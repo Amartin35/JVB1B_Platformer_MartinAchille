@@ -18,6 +18,10 @@ export default class Test extends Phaser.Scene{
             frameWidth: 34,
             frameHeight: 66
         });
+        this.load.spritesheet("perso2", "src/assets/test.png", {
+          frameWidth: 34,
+          frameHeight: 66
+      });
     }
 
 /////////////////////////////////////// CREATE ///////////////////////////////////////

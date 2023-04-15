@@ -8,78 +8,110 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
 			parler: Phaser.Input.Keyboard.KeyCodes.A,
 		});
-        this.pad; // récupère la manette
+		this.pad; // récupère la manette
 		scene.physics.world.enable(this);
 		scene.add.existing(this);
-        // Propriétés des animations
+		// Propriétés des animations
 		this.CreateAnimations();
-        this.direction = "right"; 
-        this.body.setSize(15, 15);
+		this.direction = "right"; 
+		this.body.setSize(15, 15);
 		this.body.setOffset(9, 50);
-
-        // Propriétés de déplacement
-        
-        this.jumpHeight = 300; // Hauteur du saut en pixels
-        this.isJumping = false; // Indique si le joueur est en train de sauter
-        this.canJump = true; // Indique si le joueur peut sauter à nouveau
-    }
-
-    update() {
-		// Déplacement horizontal
-		if (this.clavier.left.isDown) {
-			this.body.setVelocityX(-PLAYER_SPEED);
-			this.direction = "left";
-			this.flipX = true;
-			if (!this.isJumping) {
-				this.play("Run", true);
-			}
-		} else if (this.clavier.right.isDown) {
-			this.body.setVelocityX(PLAYER_SPEED);
-			this.direction = "right";
-			this.flipX = false;
-			if (!this.isJumping) {
-				this.play("Run", true);
+		
+		// Définition des propriétés de saut
+		this.jumpVelocity = -350;
+		this.isJumping = false;
+		this.jumpStartY = 0;
+		this.jumpApexY = 0;
+	}
+	
+	update(){
+		
+		// Détection des collisions avec le sol
+		const onGround = this.body.blocked.down;
+		
+		// Gestion des sauts
+		if (onGround) {
+			// Réinitialisation des propriétés de saut
+			this.isJumping = false;
+			this.jumpStartY = 0;
+			this.jumpApexY = 0;
+		} else if (this.isJumping) {
+			// Saut en cours
+			
+			// Calcul de la progression du saut
+			const jumpProgress = (this.y - this.jumpStartY) / (this.jumpApexY - this.jumpStartY);
+			
+			// Animation de saut
+			if (jumpProgress < 0.25) {
+				this.anims.play('jump_start', true);
+			} else if (jumpProgress < 0.5) {
+				this.anims.play('jump_up', true);
+			} else if (jumpProgress < 0.75) {
+				this.anims.play('jump_apex', true);
+			} else {
+				this.anims.play('jump_down', true);
 			}
 		} else {
-			this.body.setVelocityX(0);
-			if (!this.isJumping) {
-				this.play("Idle", true);
-			}
+			// Animation de marche
+			this.anims.play('walk', true);
 		}
+		
 
-		// Saut
-		if (this.clavier.up.isDown && this.canJump && !this.isJumping) {
-			this.body.setVelocityY(-this.jumpHeight);
+		
+		// Détection des entrées clavier
+		const cursors = this.scene.input.keyboard.createCursorKeys();
+		
+		if (cursors.up.isDown && onGround) {
+			// Début du saut
 			this.isJumping = true;
-			this.canJump = false;
-			this.play("Jump", true);
+			this.jumpStartY = this.y;
+			this.jumpApexY = this.y - 100; // Hauteur maximale du saut
+			this.setVelocityY(this.jumpVelocity);
 		}
+		
+	
+	}
 
-		// Si le joueur est en train de sauter et qu'il touche le sol, on l'indique
-		if (this.body.onFloor()) {
-			this.isJumping = false;
-			this.canJump = true;
-		}
-    }
 
-    CreateAnimations(){
+
+	CreateAnimations() {
+		// Animation de marche
 		this.scene.anims.create({
-			key: 'Idle',
-			frames: this.scene.anims.generateFrameNumbers('perso', {start:0, end:5}),
-			frameRate: 20,
-			repeat: -1
-		});
-		this.scene.anims.create({
-			key: 'Run',
-			frames: this.scene.anims.generateFrameNumbers('perso', {start:8, end:15}),
+			key: 'walk',
+			frames: this.scene.anims.generateFrameNumbers('player', { start: 0, end: 1 }),
 			frameRate: 10,
 			repeat: -1
 		});
+		
+		// Animation de saut - début
 		this.scene.anims.create({
-			key: 'Jump',
-			frames: this.scene.anims.generateFrameNumbers('perso', {start:6, end:16}),
-			frameRate: 10,
-			repeat: -1
+			key: 'jump_start',
+			frames: [ { key: 'perso2', frame: 17 } ],
+			frameRate: 10
+		});
+		
+		// Animation de saut - montée
+		this.scene.anims.create({
+			key: 'jump_up',
+			frames: [ { key: 'perso2', frame: 18 } ],
+			frameRate: 10
+		});
+		
+		// Animation de saut - point culminant
+		this.scene.anims.create({
+			key: 'jump_apex',
+			frames: [ { key: 'perso2', frame: 19 } ],
+			frameRate: 10
+		});
+		
+		// Animation de saut - descente
+		this.scene.anims.create({
+			key: 'jump_down',
+			frames: [ { key: 'perso2', frame: 20 } ],
+			frameRate: 10
 		});
 	}
+
 }
+
+
