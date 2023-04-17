@@ -14,7 +14,7 @@ export default class Test extends Phaser.Scene{
         this.load.image("img_plateforme", "src/assets/platform.png");
         this.load.image("img_etoile", "src/assets/star.png");
         this.load.image("img_bombe", "src/assets/bomb.png");
-        this.load.spritesheet("perso", "src/assets/SpriteSheetMainCharacter.png", {
+        this.load.spritesheet("perso", "src/assets/SpriteSheetMainCharacter2.png", {
             frameWidth: 32,
             frameHeight: 64
         });
