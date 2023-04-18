@@ -10,11 +10,13 @@ export default class Test extends Phaser.Scene{
 
 /////////////////////////////////////// PRELOAD ///////////////////////////////////////
     preload() {
+		this.load.tilemapTiledJSON('mapTest', 'src/assets/map/NiveauDeTest.json');
         this.load.image("img_ciel", "src/assets/sky.png");
         this.load.image("img_plateforme", "src/assets/platform.png");
         this.load.image("img_etoile", "src/assets/star.png");
         this.load.image("img_bombe", "src/assets/bomb.png");
-        this.load.spritesheet("perso", "src/assets/SpriteSheetMainCharacter2.png", {
+		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
+        this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2.png", {
             frameWidth: 32,
             frameHeight: 64
         });
@@ -22,29 +24,39 @@ export default class Test extends Phaser.Scene{
 
 /////////////////////////////////////// CREATE ///////////////////////////////////////
     create(){
-		this.add.image(400, 300, "img_ciel");
-		this.groupe_plateformes = this.physics.add.staticGroup();
-		this.groupe_plateformes.create(200, 584, "img_plateforme");
-		this.groupe_plateformes.create(600, 584, "img_plateforme");
-	  
-		//  on ajoute 3 platesformes flottantes
-		this.groupe_plateformes.create(600, 450, "img_plateforme");
-		this.groupe_plateformes.create(50, 300, "img_plateforme");
-		this.groupe_plateformes.create(750, 270, "img_plateforme");
+
+		const map = this.add.tilemap("mapTest");
+		const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
+		
+		const backgroundLayer = map.createLayer(
+			"background",
+			tileset
+		);
+
+		const solideLayer = map.createLayer(
+			"solide",
+			tileset
+		);
+
+
+
+		this.player = new Player(this, 64, 608, 'perso');
+		this.physics.world.setBounds(0, 0, 800, 800);
+
+		solideLayer.setCollisionByExclusion(-1, true); 
+		this.physics.add.collider(this.player, solideLayer);
 
 
 		
 
 
-		this.player = new Player(this, 100, 450, 'perso');
-		this.player.setCollideWorldBounds(true); 
 
-		this.physics.add.collider(this.player, this.groupe_plateformes);
+		
 		// Ajout de la caméra
-		this.cameras.main.setBounds(0, 0, 1600, 1600);
+		this.cameras.main.setBounds(0, 0, 800, 800);
 		this.cameras.main.startFollow(this.player);
-		this.cameras.main.setBackgroundColor(0xaaaaaa);
-		this.cameras.main.setLerp(0.5);
+
+
     }
 
  /////////////////////////////////////// UPDATE  ///////////////////////////////////////

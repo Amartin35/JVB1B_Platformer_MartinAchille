@@ -1,7 +1,10 @@
 
 
 // PLAYER
-const PLAYER_SPEED = 300
+const PLAYER_SPEED = 400
+const PLAYER_JUMP = 450
+
 // JEU 
-const GAME_HEIGHT = 288
-const GAME_WIDTH = 512
+const GAME_HEIGHT = 448
+const GAME_WIDTH = 896
+const GAME_GRAVITY = 1100

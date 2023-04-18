@@ -8,73 +8,108 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			attack: Phaser.Input.Keyboard.KeyCodes.SPACE,
 			parler: Phaser.Input.Keyboard.KeyCodes.A,
 		});
-		this.pad; // récupère la manette
+		this.pad;
 		scene.physics.world.enable(this);
 		scene.add.existing(this);
-		// Propriétés des animations
-		this.CreateAnimations();
-		this.direction = "right"; 
+		this.body.setCollideWorldBounds(true);
 		this.body.setSize(15, 15);
-		this.body.setOffset(9, 50);
+		this.body.setOffset(9, 49);
+
+
+		this.CreateAnimations();
+
+		this.direction = "right"; 
+		this.wallJumping = true;
+	
 		
 	}
 	
 	update(){
-		// Détection des touches de saut
+
+		// Déplacement
 		if (this.clavier.up.isDown && this.body.onFloor()) {
-			this.body.setVelocityY(-500);
+			this.body.setVelocityY(-PLAYER_JUMP);
 		}
 		
-		// Détection des touches de déplacement
 		if (this.clavier.left.isDown) {
-			this.body.setVelocityX(-200);
+			this.body.setVelocityX(-PLAYER_SPEED);
 			this.direction = "left";
 			if (this.body.onFloor()) {
 				this.anims.play('run', true);
 				this.flipX = true;
 			}
-		} else if (this.clavier.right.isDown) {
-			this.body.setVelocityX(200);
+		} 
+		else if (this.clavier.right.isDown) {
+			this.body.setVelocityX(PLAYER_SPEED);
 			this.direction = "right";
 			if (this.body.onFloor()) {
 				this.anims.play('run', true);
 				this.flipX = false;
 			}
-		} else {
+		} 
+		else {
 			this.body.setVelocityX(0);
 			if (this.body.onFloor()) {
 				this.anims.play('idle', true);
 			}
 		}
 		
+
+		// Wall Jump
+		const onGround = this.body.blocked.down;
+		const onWall = this.body.blocked.left || this.body.blocked.right;
+
+		if (onWall && !onGround && this.clavier.up.isDown && this.wallJumping) {
+		this.wallJumping = false;
+		this.body.setVelocityY(-PLAYER_JUMP);
+		this.body.setVelocityX(-this.body.velocity.x);
+		setTimeout(() => {
+			this.wallJumping = true;
+		}, 600);
+		} else if (onWall && !onGround && !this.clavier.up.isDown) {
+		this.body.setVelocityY(-this.body.velocity.y / 4); 
+		
+		}
+
 		// Gestion des animations
 		if (this.body.velocity.y < 0) {
 			this.anims.play('jumpUp', true);
-		} else if (this.body.velocity.y > 0) {
+		} 
+		else if (this.body.velocity.y > 0) {
 			this.anims.play('jumpDown', true);
-		} else if (this.body.onFloor()) {
+		} 
+		else if (this.body.onFloor()) {
 			if (this.direction === "left") {
 				this.anims.play('run', true);
 				this.flipX = true;
-			} else {
+			} 
+			else if (this.direction === "right") {
+				this.anims.play('run', true);
+				this.flipX = false;
+			} 
+			else {
 				this.anims.play('idle', true);
 			}
 		}
 	}
+
+
+
+
 	
 	CreateAnimations() {
 		// Ajout des animations
 		this.scene.anims.create({
 			key: 'idle',
 			frames: this.scene.anims.generateFrameNumbers('perso', { start: 0, end: 4 }),
-			frameRate: 10,
+			frameRate: 12,
 			repeat: -1
 		});
 		
 		this.scene.anims.create({
 			key: 'run',
-			frames: this.scene.anims.generateFrameNumbers('perso', { start: 29, end: 31 }),
-			frameRate: 5,
+			frames: this.scene.anims.generateFrameNumbers('perso', { start: 29, end: 32 }),
+			frameRate: 18,
 			repeat: -1
 		});
 		
@@ -91,5 +126,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			frameRate: 24,
 			repeat: -1
 		});
+
+		this.scene.anims.create({
+			key: 'wallSlide',
+			frames: this.scene.anims.generateFrameNumbers('perso', { start: 33, end: 33 }),
+			frameRate: 24,
+			repeat: -1
+		});
 	}
+
 }
