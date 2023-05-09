@@ -68,8 +68,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		}, 600);
 		} else if (onWall && !onGround && !this.clavier.up.isDown) {
 		this.body.setVelocityY(-this.body.velocity.y / 4); 
-		
 		}
+
+
+
 
 		// Gestion des animations
 		if (this.body.velocity.y < 0) {
@@ -78,19 +80,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		else if (this.body.velocity.y > 0) {
 			this.anims.play('jumpDown', true);
 		} 
-		else if (this.body.onFloor()) {
-			if (this.direction === "left") {
-				this.anims.play('run', true);
-				this.flipX = true;
-			} 
-			else if (this.direction === "right") {
-				this.anims.play('run', true);
-				this.flipX = false;
-			} 
-			else {
-				this.anims.play('idle', true);
+		else {
+			if (this.body.onFloor()) {
+				if (this.clavier.left.isUp && this.clavier.right.isUp) {
+					this.anims.play('idle', true);
+				} else {
+					if (this.direction === "left") {
+						this.flipX = true;
+					} else if (this.direction === "right") {
+						this.flipX = false;
+					}
+				}
 			}
 		}
+		
 	}
 
 
@@ -109,7 +112,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.scene.anims.create({
 			key: 'run',
 			frames: this.scene.anims.generateFrameNumbers('perso', { start: 29, end: 32 }),
-			frameRate: 18,
+			frameRate: 12,
 			repeat: -1
 		});
 		
@@ -129,7 +132,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		this.scene.anims.create({
 			key: 'wallSlide',
-			frames: this.scene.anims.generateFrameNumbers('perso', { start: 33, end: 33 }),
+			frames: this.scene.anims.generateFrameNumbers('perso', { start: 33, end: 34 }),
 			frameRate: 24,
 			repeat: -1
 		});

@@ -1,7 +1,7 @@
 
 
 // PLAYER
-const PLAYER_SPEED = 400
+const PLAYER_SPEED = 350    
 const PLAYER_JUMP = 450
 
 // JEU 
