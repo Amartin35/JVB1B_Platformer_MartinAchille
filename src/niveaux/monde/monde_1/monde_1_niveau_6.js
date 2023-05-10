@@ -6,22 +6,6 @@ export default class MONDE_1_NIVEAU_6 extends Phaser.Scene{
 	}
 	
 	
-	
-	
-	/////////////////////////////////////// PRELOAD ///////////////////////////////////////
-	preload() {
-		this.load.tilemapTiledJSON('map_monde_1_niveau_6', 'src/assets/map/monde_1/monde_1_niveau_6_01.json');
-		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
-		this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2.png", {
-			frameWidth: 32,
-			frameHeight: 64
-		});
-		this.load.spritesheet("scie","src/assets/Sprite_asset_scie.png", {
-			frameWidth: 64,
-			frameHeight: 32
-		});
-	}
-	
 	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create(){
 		const map = this.add.tilemap("map_monde_1_niveau_6");

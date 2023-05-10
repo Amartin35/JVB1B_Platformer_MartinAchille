@@ -5,19 +5,7 @@ export default class MONDE_1_NIVEAU_10 extends Phaser.Scene{
 		super({key : "MONDE_1_NIVEAU_10"}); // mettre le meme nom que le nom de la classe
 	}
 	
-	
-	
-	
-	/////////////////////////////////////// PRELOAD ///////////////////////////////////////
-	preload() {
-		this.load.tilemapTiledJSON('map_monde_1_niveau_1', 'src/assets/map/monde_1/monde_1_niveau_1_01.json');
-		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
-		this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2.png", {
-			frameWidth: 32,
-			frameHeight: 64
-		});
-	}
-	
+
 	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create(){
 		const map = this.add.tilemap("map_monde_1_niveau_1");

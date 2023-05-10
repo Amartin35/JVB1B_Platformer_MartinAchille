@@ -8,7 +8,29 @@ export default class HUB extends Phaser.Scene{
 
 /////////////////////////////////////// PRELOAD ///////////////////////////////////////
     preload() {
+        // Tilemap
+        this.load.tilemapTiledJSON('map_monde_1_niveau_1', 'src/assets/map/monde_1/monde_1_niveau_1_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_2', 'src/assets/map/monde_1/monde_1_niveau_2_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_3', 'src/assets/map/monde_1/monde_1_niveau_3_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_4', 'src/assets/map/monde_1/monde_1_niveau_4_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_5', 'src/assets/map/monde_1/monde_1_niveau_5_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_6', 'src/assets/map/monde_1/monde_1_niveau_6_01.json');
 
+
+
+        // Image
+		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
+
+
+        // Spritesheet
+		this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2.png", {
+			frameWidth: 32,
+			frameHeight: 64
+		});
+        this.load.spritesheet("scie","src/assets/Sprite_asset_scie.png", {
+			frameWidth: 64,
+			frameHeight: 32
+		});
     }
 
 /////////////////////////////////////// CREATE ///////////////////////////////////////
