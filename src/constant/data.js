@@ -1,3 +1,3 @@
 var myGameValues = {
-
+    hasWallJump : false,
 };

@@ -1,4 +1,16 @@
-import Test from "./niveaux/Test.js";
+import MONDE_1_NIVEAU_1 from "./niveaux/monde/monde_1/monde_1_niveau_1.js";
+import MONDE_1_NIVEAU_10 from "./niveaux/monde/monde_1/monde_1_niveau_10.js";
+import MONDE_1_NIVEAU_2 from "./niveaux/monde/monde_1/monde_1_niveau_2.js";
+import MONDE_1_NIVEAU_3 from "./niveaux/monde/monde_1/monde_1_niveau_3.js";
+import MONDE_1_NIVEAU_4 from "./niveaux/monde/monde_1/monde_1_niveau_4.js";
+import MONDE_1_NIVEAU_5 from "./niveaux/monde/monde_1/monde_1_niveau_5.js";
+import MONDE_1_NIVEAU_6 from "./niveaux/monde/monde_1/monde_1_niveau_6.js";
+import MONDE_1_NIVEAU_7 from "./niveaux/monde/monde_1/monde_1_niveau_7.js";
+import MONDE_1_NIVEAU_8 from "./niveaux/monde/monde_1/monde_1_niveau_8.js";
+import MONDE_1_NIVEAU_9 from "./niveaux/monde/monde_1/monde_1_niveau_9.js";
+
+
+
 var gameViewport = document.getElementById("game_viewport");
 addEventListener("resize", onResizeWindow);
 function onResizeWindow(){
@@ -37,10 +49,23 @@ var config = {
 		target: 60,
 		forceSetTimeOut: true
 	},
-	scene: [Test]
+	scene: [
+
+		MONDE_1_NIVEAU_1,
+		MONDE_1_NIVEAU_2,
+		MONDE_1_NIVEAU_3,
+		MONDE_1_NIVEAU_4,
+		MONDE_1_NIVEAU_5,
+		MONDE_1_NIVEAU_6,
+		MONDE_1_NIVEAU_7,
+		MONDE_1_NIVEAU_8,
+		MONDE_1_NIVEAU_9,
+		MONDE_1_NIVEAU_10
+
+	]
 };
 
 var game = new Phaser.Game(config);
-game.scene.start("Test"); // Lancement de la scene Menu
+game.scene.start("MONDE_1_NIVEAU_1"); // Lancement de la scene Menu
 
 

@@ -11,12 +11,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.pad;
 		scene.physics.world.enable(this);
 		scene.add.existing(this);
-		this.body.setCollideWorldBounds(true);
+		this.setCollideWorldBounds(true);
+		this.body.onWorldBounds = true;
+		this.scene.physics.world.on('worldbounds', this.onWorldBounds, this);
 		this.body.setSize(15, 15);
 		this.body.setOffset(9, 49);
 
 
 		this.CreateAnimations();
+		
 
 		this.direction = "right"; 
 		this.wallJumping = true;
@@ -36,7 +39,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			this.direction = "left";
 			if (this.body.onFloor()) {
 				this.anims.play('run', true);
-				this.flipX = true;
 			}
 		} 
 		else if (this.clavier.right.isDown) {
@@ -44,7 +46,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			this.direction = "right";
 			if (this.body.onFloor()) {
 				this.anims.play('run', true);
-				this.flipX = false;
 			}
 		} 
 		else {
@@ -59,14 +60,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		const onGround = this.body.blocked.down;
 		const onWall = this.body.blocked.left || this.body.blocked.right;
 
-		if (onWall && !onGround && this.clavier.up.isDown && this.wallJumping) {
+		if (onWall && !onGround && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump) {
 		this.wallJumping = false;
 		this.body.setVelocityY(-PLAYER_JUMP);
 		this.body.setVelocityX(-this.body.velocity.x);
 		setTimeout(() => {
 			this.wallJumping = true;
 		}, 600);
-		} else if (onWall && !onGround && !this.clavier.up.isDown) {
+		} else if (onWall && !onGround && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
 		this.body.setVelocityY(-this.body.velocity.y / 4); 
 		}
 
@@ -76,9 +77,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Gestion des animations
 		if (this.body.velocity.y < 0) {
 			this.anims.play('jumpUp', true);
+			if (this.direction === "left") {
+				this.flipX = true;
+			} else if (this.direction === "right") {
+				this.flipX = false;
+			}
 		} 
 		else if (this.body.velocity.y > 0) {
 			this.anims.play('jumpDown', true);
+			if (this.direction === "left") {
+				this.flipX = true;
+			} else if (this.direction === "right") {
+				this.flipX = false;
+			}
 		} 
 		else {
 			if (this.body.onFloor()) {
@@ -137,5 +148,21 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			repeat: -1
 		});
 	}
+
+	onWorldBounds(body) {
+		// Player meurt si touche bas de l'écran
+		if (body.gameObject === this && body.bottom === this.scene.physics.world.bounds.bottom) {
+		  this.playerDeath();
+		  
+		}
+	}
+
+	playerDeath() {
+		// Fonction de kill
+		this.scene.cameras.main.shake(200);
+		this.scene.time.delayedCall(200, () => {
+		  this.scene.scene.restart();
+		});
+	  }
 
 }
