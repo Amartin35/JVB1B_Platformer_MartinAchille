@@ -2,7 +2,7 @@
 
 // PLAYER
 const PLAYER_SPEED = 350    
-const PLAYER_JUMP = 470
+const PLAYER_JUMP = 460
 
 // JEU 
 const GAME_HEIGHT = 448

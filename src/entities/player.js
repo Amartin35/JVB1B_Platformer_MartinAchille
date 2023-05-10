@@ -160,7 +160,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	playerDeath() {
 		// Fonction de kill
 		this.scene.cameras.main.shake(200);
-		this.scene.time.delayedCall(200, () => {
+		this.scene.time.delayedCall(100, () => {
 		  this.scene.scene.restart();
 		});
 	  }

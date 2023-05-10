@@ -49,7 +49,13 @@ export default class MONDE_1_NIVEAU_5 extends Phaser.Scene{
 		this.physics.world.setBounds(0, 0, 896, 448);
 		
 		solideLayer.setCollisionByExclusion(-1, true); 
+		FinLayer.setCollisionByExclusion(-1, true);
 		this.physics.add.collider(this.player, solideLayer);
+		this.physics.add.collider(this.player, FinLayer, () => {
+			this.scene.start("MONDE_1_NIVEAU_6",{
+			});
+			console.log("switch");
+		});
 		
 		
 		// Ajout de la caméra
