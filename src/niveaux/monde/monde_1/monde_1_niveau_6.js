@@ -31,9 +31,13 @@ export default class MONDE_1_NIVEAU_6 extends Phaser.Scene{
 			"Obstacles",
 		);
 
+		const FinLayer = map.createLayer(
+			"Fin",
+			tileset
+		);
 		var obstaclesGroup = this.physics.add.group();
 
-		ObstaclesLayer.objects.forEach(obj => {
+		ObstaclesLayer.objects.forEach(obj => { 
 			if (obj.properties[0]?.value === 'scie') {
 				var scie = new Scie(this, obj.x, obj.y);
 				obstaclesGroup.add(scie);
@@ -42,19 +46,22 @@ export default class MONDE_1_NIVEAU_6 extends Phaser.Scene{
 			}
 		});
 
-		const FinLayer = map.createLayer(
-			"Fin",
-			tileset
-		);
+	
 	
 		this.player = new Player(this, 48, 350, 'perso');
 		this.physics.world.setBounds(0, 0, 896, 448);
 
 	
 		solideLayer.setCollisionByExclusion(-1, true); 
+		FinLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
 		this.physics.add.collider(this.player, obstaclesGroup, () => {
 			this.player.playerDeath();
+		});
+		this.physics.add.collider(this.player, FinLayer, () => {
+			this.scene.start("MONDE_1_NIVEAU_7",{
+			});
+			console.log("switch");
 		});
 
 		

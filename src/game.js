@@ -37,7 +37,7 @@ var config = {
 		
 		default: "arcade", 
 		arcade: {
-			debug: false,
+			debug: true,
 			gravity: {
 				y: GAME_GRAVITY // gravité verticale : acceleration ddes corps en pixels par seconde
 			},

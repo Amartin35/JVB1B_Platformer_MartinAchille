@@ -40,7 +40,7 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene{
 		FinLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
 		this.physics.add.collider(this.player, FinLayer, () => {
-			this.scene.start("MONDE_1_NIVEAU_2",{
+			this.scene.start("MONDE_1_NIVEAU_6",{
 			});
 			console.log("switch");
 		});	

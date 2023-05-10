@@ -15,6 +15,7 @@ export default class HUB extends Phaser.Scene{
         this.load.tilemapTiledJSON('map_monde_1_niveau_4', 'src/assets/map/monde_1/monde_1_niveau_4_01.json');
         this.load.tilemapTiledJSON('map_monde_1_niveau_5', 'src/assets/map/monde_1/monde_1_niveau_5_01.json');
         this.load.tilemapTiledJSON('map_monde_1_niveau_6', 'src/assets/map/monde_1/monde_1_niveau_6_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_7', 'src/assets/map/monde_1/monde_1_niveau_7_01.json');
 
 
 
@@ -29,7 +30,7 @@ export default class HUB extends Phaser.Scene{
 		});
         this.load.spritesheet("scie","src/assets/Sprite_asset_scie.png", {
 			frameWidth: 64,
-			frameHeight: 32
+			frameHeight: 64
 		});
     }
 
