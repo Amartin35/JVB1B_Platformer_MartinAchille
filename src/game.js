@@ -1,3 +1,4 @@
+import HUB from "./niveaux/hub.js";
 import MONDE_1_NIVEAU_1 from "./niveaux/monde/monde_1/monde_1_niveau_1.js";
 import MONDE_1_NIVEAU_10 from "./niveaux/monde/monde_1/monde_1_niveau_10.js";
 import MONDE_1_NIVEAU_2 from "./niveaux/monde/monde_1/monde_1_niveau_2.js";
@@ -50,6 +51,9 @@ var config = {
 		forceSetTimeOut: true
 	},
 	scene: [
+		
+		HUB,
+
 
 		MONDE_1_NIVEAU_1,
 		MONDE_1_NIVEAU_2,
@@ -66,6 +70,6 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-game.scene.start("MONDE_1_NIVEAU_1"); // Lancement de la scene Menu
+game.scene.start("HUB"); // Lancement de la scene Menu
 
 
