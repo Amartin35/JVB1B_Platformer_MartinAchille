@@ -16,6 +16,9 @@ export default class HUB extends Phaser.Scene{
         this.load.tilemapTiledJSON('map_monde_1_niveau_5', 'src/assets/map/monde_1/monde_1_niveau_5_01.json');
         this.load.tilemapTiledJSON('map_monde_1_niveau_6', 'src/assets/map/monde_1/monde_1_niveau_6_01.json');
         this.load.tilemapTiledJSON('map_monde_1_niveau_7', 'src/assets/map/monde_1/monde_1_niveau_7_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_8', 'src/assets/map/monde_1/monde_1_niveau_8_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_9', 'src/assets/map/monde_1/monde_1_niveau_9_01.json');
+        this.load.tilemapTiledJSON('map_monde_1_niveau_10', 'src/assets/map/monde_1/monde_1_niveau_10_01.json');
 
 
 
@@ -56,6 +59,5 @@ export default class HUB extends Phaser.Scene{
             this.scene.start("MONDE_1_NIVEAU_1",{
             });
         } 
-        
     }
 }

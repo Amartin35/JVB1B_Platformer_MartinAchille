@@ -25,7 +25,7 @@ onResizeWindow();
 
 // Configuration générale du jeu
 var config = {
-	type: Phaser.CANVAS,
+	type: Phaser.WEBGL,
 	width: GAME_WIDTH,
 	height: GAME_HEIGHT, 
 	parent: 'game_viewport',
@@ -37,7 +37,7 @@ var config = {
 		
 		default: "arcade", 
 		arcade: {
-			debug: true,
+			debug: false,
 			gravity: {
 				y: GAME_GRAVITY // gravité verticale : acceleration ddes corps en pixels par seconde
 			},

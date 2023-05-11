@@ -14,9 +14,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.setCollideWorldBounds(true);
 		this.body.onWorldBounds = true;
 		this.scene.physics.world.on('worldbounds', this.onWorldBounds, this);
-		this.body.setSize(15, 15);
-		this.body.setOffset(9, 49);
-
+		this.setDepth(PLAYER_LAYER_DEPTH);
+		this.body.setCircle(7.5, 9, 49);
 
 		this.CreateAnimations();
 		
@@ -24,14 +23,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.direction = "right"; 
 		this.wallJumping = true;
 	
-		
+		this.onGround = true;
+		this.isJumping = false;
 	}
 	
 	update(){
+		// Aide saut
+		if(!this.body.blocked.down){
+			setTimeout(() => {
+				this.onGround = this.body.blocked.down;
+			}, 83);
+		}
+		else{
+			this.isJumping = false;
+		}
 
 		// Déplacement
-		if (this.clavier.up.isDown && this.body.onFloor()) {
+		if (this.clavier.up.isDown && this.onGround && !this.isJumping) {
 			this.body.setVelocityY(-PLAYER_JUMP);
+			this.isJumping = true;
 		}
 		
 		if (this.clavier.left.isDown) {
@@ -54,20 +64,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 				this.anims.play('idle', true);
 			}
 		}
-		
-
+	
 		// Wall Jump
-		const onGround = this.body.blocked.down;
-		const onWall = this.body.blocked.left || this.body.blocked.right;
 
-		if (onWall && !onGround && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump) {
+		const onWall = this.body.blocked.left || this.body.blocked.right;
+	
+
+		if (onWall && this.isJumping && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump) {
 		this.wallJumping = false;
 		this.body.setVelocityY(-PLAYER_JUMP);
 		this.body.setVelocityX(-this.body.velocity.x);
 		setTimeout(() => {
 			this.wallJumping = true;
 		}, 600);
-		} else if (onWall && !onGround && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
+		} else if (onWall && this.isJumping && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
 		this.body.setVelocityY(-this.body.velocity.y / 4); 
 		}
 
@@ -163,6 +173,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.scene.time.delayedCall(100, () => {
 		  this.scene.scene.restart();
 		});
-	  }
+	}
 
 }

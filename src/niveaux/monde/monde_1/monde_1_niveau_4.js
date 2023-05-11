@@ -14,36 +14,37 @@ export default class MONDE_1_NIVEAU_4 extends Phaser.Scene{
 		const backgroundLayer = map.createLayer(
 			"Background",
 			tileset
-		);
+		).setDepth(BACKGROUND_LAYER_DEPTH);
 			
 		const solideLayer = map.createLayer(
 			"Solide",
 			tileset
-		);
+		).setDepth(SOLIDE_LAYER_DEPTH);
 		// Layer a enlever
-		const DebutLayer = map.createLayer(
+		const debutLayer = map.createLayer(
 			"Debut",
 			tileset
-		);
+		).setDepth(DEBUT_LAYER_DEPTH);
 			
-		const FinLayer = map.createLayer(
+		const finLayer = map.createLayer(
 			"Fin",
 			tileset
-		);
-		
+		).setDepth(FIN_LAYER_DEPTH);
 		
 		
 		this.player = new Player(this, 48, 350, 'perso');
 		this.physics.world.setBounds(0, 0, 896, 448);
 		
 		solideLayer.setCollisionByExclusion(-1, true); 
-		FinLayer.setCollisionByExclusion(-1, true); 
+		finLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
-		this.physics.add.collider(this.player, FinLayer, () => {
+		this.physics.add.collider(this.player, finLayer, () => {
 			this.scene.start("MONDE_1_NIVEAU_5",{
 			});
 			console.log("switch");
 		});
+		
+		this.timeText = this.add.text(10, 10, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
 		
 		
 		// Ajout de la caméra
@@ -52,5 +53,24 @@ export default class MONDE_1_NIVEAU_4 extends Phaser.Scene{
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update(){
 		this.player.update();
+		const delta = this.game.loop.delta;
+	
+		window.myGameValues.TimerValues += delta;
+	
+		// Convertir le temps en heures, minutes, secondes et millisecondes
+		let ms = Math.floor(window.myGameValues.TimerValues % 1000);
+		let s = Math.floor(window.myGameValues.TimerValues / 1000) % 60;
+		let m = Math.floor(window.myGameValues.TimerValues / (60 * 1000)) % 60;
+		let h = Math.floor(window.myGameValues.TimerValues / (60 * 60 * 1000)) % 99; // Limite de 99 heures
+	
+		// Mettre en forme le texte du chronomètre
+		let text = `Temps : ${h.toString().padStart(2, "0")}:${m
+		  .toString()
+		  .padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms
+		  .toString()
+		  .padStart(3, "0")}`;
+	
+
+		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 	}
 }

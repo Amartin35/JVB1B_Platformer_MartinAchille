@@ -1,6 +1,7 @@
 export default class Scie extends Phaser.GameObjects.Sprite {
 	constructor(scene, x, y) {
 		super(scene, x, y, 'scie');
+		this.setDepth(OBSTACLE_LAYER_DEPTH);
 		this.setOrigin(0, 0);
 		scene.physics.world.enable(this);
 		scene.add.existing(this);
