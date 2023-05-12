@@ -1,4 +1,4 @@
 var myGameValues = {
-    hasWallJump : false,
+    hasWallJump : true,
     TimerValues : 0,
 };

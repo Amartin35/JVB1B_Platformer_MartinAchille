@@ -20,6 +20,17 @@ export default class HUB extends Phaser.Scene{
         this.load.tilemapTiledJSON('map_monde_1_niveau_9', 'src/assets/map/monde_1/monde_1_niveau_9_01.json');
         this.load.tilemapTiledJSON('map_monde_1_niveau_10', 'src/assets/map/monde_1/monde_1_niveau_10_01.json');
 
+        this.load.tilemapTiledJSON('map_monde_2_niveau_1', 'src/assets/map/monde_1/monde_2_niveau_1_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_2', 'src/assets/map/monde_1/monde_2_niveau_2_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_3', 'src/assets/map/monde_1/monde_2_niveau_3_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_4', 'src/assets/map/monde_1/monde_2_niveau_4_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_5', 'src/assets/map/monde_1/monde_2_niveau_5_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_6', 'src/assets/map/monde_1/monde_2_niveau_6_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_7', 'src/assets/map/monde_1/monde_2_niveau_7_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_8', 'src/assets/map/monde_1/monde_2_niveau_8_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_9', 'src/assets/map/monde_1/monde_2_niveau_9_01.json');
+        this.load.tilemapTiledJSON('map_monde_2_niveau_10', 'src/assets/map/monde_1/monde_2_niveau_10_01.json');
+
 
 
         // Image
@@ -56,7 +67,7 @@ export default class HUB extends Phaser.Scene{
     update(){
         //LANCE PREMIERE SCENE QUAND ESPACE APPUYE
         if (Phaser.Input.Keyboard.JustDown(this.clavier.space)){
-            this.scene.start("MONDE_1_NIVEAU_1",{
+            this.scene.start("MONDE_2_NIVEAU_5",{
             });
         } 
     }

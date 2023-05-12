@@ -60,7 +60,7 @@ export default class MONDE_1_NIVEAU_10 extends Phaser.Scene{
 			this.player.playerDeath();
 		});
 		this.physics.add.collider(this.player, finLayer, () => {
-			this.scene.start("HUB",{
+			this.scene.start("MONDE_2_NIVEAU_1",{
 			});
 			console.log("switch");
 		});
