@@ -1,5 +1,5 @@
 import Player from "../../../entities/player.js";
-import Scie from "../../../traps/scie.js";
+import Scie from "../../../Sprite/scie.js";
 
 export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 	constructor() {
@@ -91,7 +91,7 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 			this.player.playerDeath();
 		});
 		this.physics.add.collider(this.player, finLayer, () => {
-			this.scene.start("HMONDE_2_NIVEAU_1",{
+			this.scene.start("MONDE_2_NIVEAU_5",{
 			});
 			
 			console.log("switch");
@@ -99,7 +99,7 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 
 
 		this.timeText = this.add.text(10, 10, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
-		
+		this.deathText = this.add.text(10, 50, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
 		// Ajout de la caméra
 		this.cameras.main.setBounds(0, 0, 896, 448);
 	}
@@ -124,7 +124,9 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 		  .padStart(3, "0")}`;
 	
 
+		  let textDeath = 'Death : ' + window.myGameValues.NbrMortValues;
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 
 	}
 	

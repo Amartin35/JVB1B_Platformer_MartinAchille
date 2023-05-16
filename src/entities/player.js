@@ -31,7 +31,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Aide saut
 		if(!this.body.blocked.down){
 			setTimeout(() => {
-				this.onGround = this.body.blocked.down;
+				this.onGround = this.body?.blocked.down;
 			}, 83);
 		}
 		else{
@@ -70,15 +70,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		const onWall = this.body.blocked.left || this.body.blocked.right;
 	
 
-		if (onWall && this.isJumping && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump) {
-		this.wallJumping = false;
-		this.body.setVelocityY(-PLAYER_JUMP);
-		this.body.setVelocityX(-this.body.velocity.x);
-		setTimeout(() => {
-			this.wallJumping = true;
-		}, 600);
-		} else if (onWall && this.isJumping && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
-		this.body.setVelocityY(-this.body.velocity.y / 4); 
+		if (onWall && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump) {
+			this.wallJumping = false;
+			this.body.setVelocityY(-PLAYER_JUMP);
+			this.body.setVelocityX(-this.body.velocity.x);
+			setTimeout(() => {
+				this.wallJumping = true;
+			}, 600);
+		} else if (onWall && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
+			this.body.setVelocityY(-this.body.velocity.y / 4); 
 		}
 
 
@@ -172,6 +172,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.scene.cameras.main.shake(200);
 		this.scene.time.delayedCall(100, () => {
 		  this.scene.scene.restart();
+		  window.myGameValues.NbrMortValues += 1;
+		  console.log(window.myGameValues.NbrMortValues);
 		});
 	}
 

@@ -44,13 +44,12 @@ export default class MONDE_1_NIVEAU_5 extends Phaser.Scene{
 			console.log("switch");
 		});
 		this.timeText = this.add.text(10, 10, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
-		
-		
+		this.deathText = this.add.text(10, 50, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
 		// Ajout de la caméra
 		this.cameras.main.setBounds(0, 0, 896, 448);
 	}
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
-	update(){
+	update() {
 		this.player.update();
 		const delta = this.game.loop.delta;
 	
@@ -70,6 +69,12 @@ export default class MONDE_1_NIVEAU_5 extends Phaser.Scene{
 		  .padStart(3, "0")}`;
 	
 
+		  let textDeath = 'Death : ' + window.myGameValues.NbrMortValues;
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+
 	}
-}
+	
+	  
+	  
+}	

@@ -14,6 +14,9 @@ import MONDE_2_NIVEAU_2 from "./niveaux/monde/monde_2/monde_2_niveau_2.js";
 import MONDE_2_NIVEAU_3 from "./niveaux/monde/monde_2/monde_2_niveau_3.js";
 import MONDE_2_NIVEAU_4 from "./niveaux/monde/monde_2/monde_2_niveau_4.js";
 import MONDE_2_NIVEAU_5 from "./niveaux/monde/monde_2/monde_2_niveau_5.js";
+import MONDE_2_NIVEAU_6 from "./niveaux/monde/monde_2/monde_2_niveau_6.js";
+import MONDE_2_NIVEAU_7 from "./niveaux/monde/monde_2/monde_2_niveau_7.js";
+import MONDE_2_NIVEAU_8 from "./niveaux/monde/monde_2/monde_2_niveau_8.js";
 
 
 
@@ -76,7 +79,10 @@ var config = {
 		MONDE_2_NIVEAU_2,
 		MONDE_2_NIVEAU_3,
 		MONDE_2_NIVEAU_4,
-		MONDE_2_NIVEAU_5
+		MONDE_2_NIVEAU_5,
+		MONDE_2_NIVEAU_6,
+		MONDE_2_NIVEAU_7,
+		MONDE_2_NIVEAU_8
 		
 
 
