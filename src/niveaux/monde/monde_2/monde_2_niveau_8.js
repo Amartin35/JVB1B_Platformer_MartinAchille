@@ -1,5 +1,6 @@
 import Player from "../../../entities/player.js";
 import Bouton from "../../../Sprite/bouton.js";
+import Porte from "../../../Sprite/porte.js";
 import Scie from "../../../Sprite/scie.js";
 
 export default class MONDE_2_NIVEAU_8 extends Phaser.Scene{
@@ -35,6 +36,8 @@ export default class MONDE_2_NIVEAU_8 extends Phaser.Scene{
 
 		const obstaclesGroup = this.physics.add.group();
         const boutonGroup = this.physics.add.group();
+		const porteGroup = this.physics.add.group();
+		const portes = [];
 
 		obstaclesLayer.objects.forEach(obj => {
 			if (obj.properties[0]?.value === 'scie') {
@@ -55,6 +58,17 @@ export default class MONDE_2_NIVEAU_8 extends Phaser.Scene{
 			}
 		});
 
+		obstaclesLayer.objects.forEach(obj => {
+			if (obj.properties[0]?.value === 'porte') {
+			     var porte = new Porte(this, obj.x, obj.y);
+				porteGroup.add(porte);
+				porte.setOrigin(-1, 0);
+                porte.body.allowGravity = false;
+                porte.body.setImmovable(true);
+				portes.push(porte);
+			}
+		});
+
 
 		const finLayer = map.createLayer(
 			"Fin",
@@ -69,11 +83,22 @@ export default class MONDE_2_NIVEAU_8 extends Phaser.Scene{
 		solideLayer.setCollisionByExclusion(-1, true); 
 		finLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
+		this.physics.add.collider(this.player, porteGroup);
 		this.physics.add.collider(this.player, obstaclesGroup, () => {
 			this.player.playerDeath();
 		});
-        this.physics.add.collider(this.player, boutonGroup, () => {
-            this.bouton.playAnimsBoutonDown();
+		let isButtonPressed = false;
+		this.physics.add.collider(this.player, boutonGroup, () => {
+			if (!isButtonPressed) {
+				isButtonPressed = true;
+				this.bouton.playAnimsBoutonDown();
+				porteGroup.getChildren().forEach(porte => {
+					porte.playAnimsPorteDown();
+					this.time.delayedCall(2100, () => {
+						porte.destroy();
+					});
+				});
+			}
 		});
 		this.physics.add.collider(this.player, finLayer, () => {
 			this.scene.start("HUB",{
@@ -99,7 +124,7 @@ export default class MONDE_2_NIVEAU_8 extends Phaser.Scene{
 		let h = Math.floor(window.myGameValues.TimerValues / (60 * 60 * 1000)) % 99; // Limite de 99 heures
 	
 		// Mettre en forme le texte du chronomètre
-		let text = `Temps : ${h.toString().padStart(2, "0")}:${m
+		let text = `Time : ${h.toString().padStart(2, "0")}:${m
 		  .toString()
 		  .padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms
 		  .toString()

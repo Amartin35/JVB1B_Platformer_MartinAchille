@@ -84,7 +84,7 @@ export default class MONDE_1_NIVEAU_8 extends Phaser.Scene{
 		let h = Math.floor(window.myGameValues.TimerValues / (60 * 60 * 1000)) % 99; // Limite de 99 heures
 	
 		// Mettre en forme le texte du chronomètre
-		let text = `Temps : ${h.toString().padStart(2, "0")}:${m
+		let text = `Time : ${h.toString().padStart(2, "0")}:${m
 		  .toString()
 		  .padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms
 		  .toString()

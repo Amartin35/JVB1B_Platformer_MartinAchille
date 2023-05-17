@@ -38,7 +38,7 @@ export default class HUB extends Phaser.Scene{
 
 
         // Spritesheet
-		this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2.png", {
+		this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2-sheet.png", {
 			frameWidth: 32,
 			frameHeight: 64
 		});
@@ -49,6 +49,10 @@ export default class HUB extends Phaser.Scene{
         this.load.spritesheet("bouton","src/assets/Sprite_asset_bouton.png", {
 			frameWidth: 32,
 			frameHeight: 12
+		});
+        this.load.spritesheet("porte","src/assets/Sprite_asset_porte.png", {
+			frameWidth: 11,
+			frameHeight: 32
 		});
     }
 
@@ -71,7 +75,7 @@ export default class HUB extends Phaser.Scene{
     update(){
         //LANCE PREMIERE SCENE QUAND ESPACE APPUYE
         if (Phaser.Input.Keyboard.JustDown(this.clavier.space)){
-            this.scene.start("MONDE_1_NIVEAU_8",{
+            this.scene.start("MONDE_2_NIVEAU_8",{
             });
         } 
     }
