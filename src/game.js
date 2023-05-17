@@ -10,6 +10,7 @@ import MONDE_1_NIVEAU_7 from "./niveaux/monde/monde_1/monde_1_niveau_7.js";
 import MONDE_1_NIVEAU_8 from "./niveaux/monde/monde_1/monde_1_niveau_8.js";
 import MONDE_1_NIVEAU_9 from "./niveaux/monde/monde_1/monde_1_niveau_9.js";
 import MONDE_2_NIVEAU_1 from "./niveaux/monde/monde_2/monde_2_niveau_1.js";
+import MONDE_2_NIVEAU_10 from "./niveaux/monde/monde_2/monde_2_niveau_10.js";
 import MONDE_2_NIVEAU_2 from "./niveaux/monde/monde_2/monde_2_niveau_2.js";
 import MONDE_2_NIVEAU_3 from "./niveaux/monde/monde_2/monde_2_niveau_3.js";
 import MONDE_2_NIVEAU_4 from "./niveaux/monde/monde_2/monde_2_niveau_4.js";
@@ -17,6 +18,7 @@ import MONDE_2_NIVEAU_5 from "./niveaux/monde/monde_2/monde_2_niveau_5.js";
 import MONDE_2_NIVEAU_6 from "./niveaux/monde/monde_2/monde_2_niveau_6.js";
 import MONDE_2_NIVEAU_7 from "./niveaux/monde/monde_2/monde_2_niveau_7.js";
 import MONDE_2_NIVEAU_8 from "./niveaux/monde/monde_2/monde_2_niveau_8.js";
+import MONDE_2_NIVEAU_9 from "./niveaux/monde/monde_2/monde_2_niveau_9.js";
 
 
 
@@ -45,7 +47,7 @@ var config = {
 		
 		default: "arcade", 
 		arcade: {
-			debug: true,
+			debug: false,
 			gravity: {
 				y: GAME_GRAVITY // gravité verticale : acceleration ddes corps en pixels par seconde
 			},
@@ -82,7 +84,9 @@ var config = {
 		MONDE_2_NIVEAU_5,
 		MONDE_2_NIVEAU_6,
 		MONDE_2_NIVEAU_7,
-		MONDE_2_NIVEAU_8
+		MONDE_2_NIVEAU_8,
+		MONDE_2_NIVEAU_9,
+		MONDE_2_NIVEAU_10
 		
 
 

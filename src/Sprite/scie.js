@@ -6,7 +6,8 @@ export default class Scie extends Phaser.GameObjects.Sprite {
 		scene.physics.world.enable(this);
 		scene.add.existing(this);
 		scene.physics.add.existing(this);
-
+		this.body.setCircle(28, 4, 4),
+		this.body.allowGravity = false;
 		this.createAnimsScies();
 	}
 	

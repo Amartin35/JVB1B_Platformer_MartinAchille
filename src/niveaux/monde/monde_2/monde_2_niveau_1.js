@@ -39,6 +39,7 @@ export default class MONDE_2_NIVEAU_1 extends Phaser.Scene{
 		solideLayer.setCollisionByExclusion(-1, true); 
 		finLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
+	
 		this.physics.add.collider(this.player, finLayer, () => {
 			this.scene.start("MONDE_2_NIVEAU_2",{
 			});
@@ -58,6 +59,7 @@ export default class MONDE_2_NIVEAU_1 extends Phaser.Scene{
 		const delta = this.game.loop.delta;
 	
 		window.myGameValues.TimerValues += delta;
+		window.myGameValues.hasWallJump = true;
 	
 		// Convertir le temps en heures, minutes, secondes et millisecondes
 		let ms = Math.floor(window.myGameValues.TimerValues % 1000);
