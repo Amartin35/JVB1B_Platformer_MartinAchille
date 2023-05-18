@@ -25,6 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	
 		this.onGround = true;
 		this.isJumping = false;
+		this.movements = [];
 	}
 	
 	update(){
@@ -153,6 +154,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		  }
 		  
 		if(this.y > 410) this.playerDeath();
+
+
+		// Stocker les valeurs de déplacement dans le tableau
+		this.movements.push({
+			x: this.body.velocity.x,
+			y: this.body.velocity.y
+		});
+		// Limiter la taille du tableau
+		const maxMovements = 100; // Modifier la taille maximale selon vos besoins
+		if (this.movements.length > maxMovements) {
+			this.movements.shift(); // Supprimer la première valeur pour conserver la taille maximale
+		}
 	}
 
 

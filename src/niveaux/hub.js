@@ -75,7 +75,7 @@ export default class HUB extends Phaser.Scene{
     update(){
         //LANCE PREMIERE SCENE QUAND ESPACE APPUYE
         if (Phaser.Input.Keyboard.JustDown(this.clavier.space)){
-            this.scene.start("MONDE_2_NIVEAU_2",{
+            this.scene.start("MONDE_1_NIVEAU_1",{
             });
         } 
     }

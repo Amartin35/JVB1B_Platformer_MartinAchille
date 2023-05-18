@@ -1,3 +1,4 @@
+import Doppelganger from "../../../entities/doppelganger.js";
 import Player from "../../../entities/player.js";
 
 export default class MONDE_1_NIVEAU_1 extends Phaser.Scene{
@@ -35,6 +36,11 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene{
 		
 		this.player = new Player(this, 48, 350, 'perso');
 		this.physics.world.setBounds(0, 0, 896, 448);
+
+		
+
+
+
 		
 		solideLayer.setCollisionByExclusion(-1, true); 
 		finLayer.setCollisionByExclusion(-1, true); 
@@ -51,6 +57,9 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene{
 		this.deathText = this.add.text(10, 50, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
 		// Ajout de la caméra
 		this.cameras.main.setBounds(0, 0, 896, 448);
+
+		const doppelgangerDelay = 1500; // Délai en millisecondes (1,5 seconde)
+		this.time.delayedCall(doppelgangerDelay, this.createDoppelganger, [], this);
 	}
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update() {
@@ -79,6 +88,14 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene{
 
 	}
 	
+	createDoppelganger() {
+		this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
+		this.doppelganger.setMovements(this.player.movements);
+		this.doppelganger.playMovements();
+	  
+		this.add.existing(this.doppelganger); // Ajoute le doppelganger à la scène
+		this.doppelganger.setDepth(90);
+	}	
 	  
 	  
 }	
