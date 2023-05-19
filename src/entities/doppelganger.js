@@ -3,20 +3,23 @@ export default class Doppelganger extends Phaser.Physics.Arcade.Sprite {
 		super(scene, x, y, texture);
 		scene.physics.world.enable(this);
 		scene.add.existing(this);
+		this.setCollideWorldBounds(true);
+		this.setDepth(PLAYER_LAYER_DEPTH);
+		this.body.setCircle(7.5, 9, 49);
 
-		this.movements = [];
+		this.positions = [];
+		this.currentPositionIndex = 0;
 	}
 
-	setMovements(movements) {
-		this.movements = movements;
+	setPositions(positions) {
+		this.positions = positions;
 	}
 
-	playMovements() {
-		this.movements.forEach((movement, index) => {
-			const { x, y } = movement;
-			this.scene.time.delayedCall(index * 100, () => {
-				this.body.setVelocity(x, y);
-			});
-		});
+	playPositions() {
+		if (this.currentPositionIndex < this.positions.length) {
+			const { x, y } = this.positions[this.currentPositionIndex];
+			this.setPosition(x, y);
+			this.currentPositionIndex++;
+		}
 	}
 }

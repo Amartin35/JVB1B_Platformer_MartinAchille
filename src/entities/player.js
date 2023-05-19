@@ -25,7 +25,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	
 		this.onGround = true;
 		this.isJumping = false;
-		this.movements = [];
+		this.positions = [];
 	}
 	
 	update(){
@@ -155,16 +155,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		  
 		if(this.y > 410) this.playerDeath();
 
-
-		// Stocker les valeurs de déplacement dans le tableau
-		this.movements.push({
-			x: this.body.velocity.x,
-			y: this.body.velocity.y
-		});
+		// Stocker les positions du sprite dans le tableau
+		this.positions.push({ x: this.x, y: this.y });
 		// Limiter la taille du tableau
-		const maxMovements = 100; // Modifier la taille maximale selon vos besoins
-		if (this.movements.length > maxMovements) {
-			this.movements.shift(); // Supprimer la première valeur pour conserver la taille maximale
+		const maxPositions = 30000; // Modifier la taille maximale selon vos besoins
+		if (this.positions.length > maxPositions) {
+		this.positions.shift(); // Supprimer la première position pour conserver la taille maximale
 		}
 	}
 
@@ -211,6 +207,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 
+	setPositions(positions) {
+		this.positions = positions;
+	}
+	
+	  getPlayerPositions() {
+		return this.positions;
+	}
 	
 	checkWorldBounds() {
 		const worldBounds = this.scene.physics.world.bounds;

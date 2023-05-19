@@ -1,3 +1,4 @@
+import Doppelganger from "../../../entities/doppelganger.js";
 import Player from "../../../entities/player.js";
 import Bouton from "../../../Sprite/bouton.js";
 import Porte from "../../../Sprite/porte.js";
@@ -73,6 +74,17 @@ export default class MONDE_2_NIVEAU_10 extends Phaser.Scene{
 		
 		this.player = new Player(this, 32, 32, 'perso');
 		this.physics.world.setBounds(0, 0, 896, 448);
+
+		this.time.delayedCall(2500, () => {
+			this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
+			this.physics.add.collider(this.doppelganger, solideLayer);
+			this.physics.add.collider(this.doppelganger, this.player, () => {
+				this.player.playerDeath();
+			});
+		
+			const playerPositions = this.player.getPlayerPositions();
+			this.doppelganger.setPositions(playerPositions);
+		}, [], this);
 
         this.scieHB1 = [
 			new Scie(this, 144, 0, 'scie').setDepth(TWEEN_MOUVEMENT),
@@ -173,6 +185,11 @@ export default class MONDE_2_NIVEAU_10 extends Phaser.Scene{
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update() {
 		this.player.update();
+
+		if (this.doppelganger) {
+			this.doppelganger.playPositions();
+		}
+
 		const delta = this.game.loop.delta;
 	
 		window.myGameValues.TimerValues += delta;
