@@ -97,13 +97,13 @@ export default class MONDE_2_NIVEAU_6 extends Phaser.Scene{
 
 		const delta = this.game.loop.delta;
 	
-		window.myGameValues.TimerValues += delta;
+		window.myGameValues.TimerValuesMonde2 += delta;
 	
 		// Convertir le temps en heures, minutes, secondes et millisecondes
-		let ms = Math.floor(window.myGameValues.TimerValues % 1000);
-		let s = Math.floor(window.myGameValues.TimerValues / 1000) % 60;
-		let m = Math.floor(window.myGameValues.TimerValues / (60 * 1000)) % 60;
-		let h = Math.floor(window.myGameValues.TimerValues / (60 * 60 * 1000)) % 99; // Limite de 99 heures
+		let ms = Math.floor(window.myGameValues.TimerValuesMonde2 % 1000);
+		let s = Math.floor(window.myGameValues.TimerValuesMonde2 / 1000) % 60;
+		let m = Math.floor(window.myGameValues.TimerValuesMonde2 / (60 * 1000)) % 60;
+		let h = Math.floor(window.myGameValues.TimerValuesMonde2 / (60 * 60 * 1000)) % 99; // Limite de 99 heures
 	
 		// Mettre en forme le texte du chronomètre
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m
@@ -113,7 +113,7 @@ export default class MONDE_2_NIVEAU_6 extends Phaser.Scene{
 		  .padStart(3, "0")}`;
 	
 
-		  let textDeath = 'Death : ' + window.myGameValues.NbrMortValues;
+		  let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde2;
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 

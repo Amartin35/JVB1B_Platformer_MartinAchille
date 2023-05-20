@@ -93,15 +93,15 @@ export default class MONDE_1_NIVEAU_6 extends Phaser.Scene{
 		}
 
 		const delta = this.game.loop.delta;
-		window.myGameValues.TimerValues += delta;
+		window.myGameValues.TimerValuesMonde1 += delta;
 
-		let ms = Math.floor(window.myGameValues.TimerValues % 1000);
-		let s = Math.floor(window.myGameValues.TimerValues / 1000) % 60;
-		let m = Math.floor(window.myGameValues.TimerValues / (60 * 1000)) % 60;
-		let h = Math.floor(window.myGameValues.TimerValues / (60 * 60 * 1000)) % 99;
+		let ms = Math.floor(window.myGameValues.TimerValuesMonde1 % 1000);
+		let s = Math.floor(window.myGameValues.TimerValuesMonde1 / 1000) % 60;
+		let m = Math.floor(window.myGameValues.TimerValuesMonde1 / (60 * 1000)) % 60;
+		let h = Math.floor(window.myGameValues.TimerValuesMonde1 / (60 * 60 * 1000)) % 99;
 
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(3, "0")}`;
-		let textDeath = 'Death : ' + window.myGameValues.NbrMortValues;
+		let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde1;
 
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);

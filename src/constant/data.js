@@ -1,6 +1,9 @@
 var myGameValues = {
     hasWallJump : false,
-    TimerValues : 0,
-    NbrMortValues : 0,
+    TimerValuesMonde1 : 0,
+    TimerValuesMonde2 : 0,
+    NbrMortValuesMonde1 : 0,
+    NbrMortValuesMonde2 : 0,
+
 
 };

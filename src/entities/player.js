@@ -226,9 +226,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.scene.cameras.main.shake(200);
 		this.scene.time.delayedCall(100, () => {
 		  this.scene.scene.restart();
-		  window.myGameValues.NbrMortValues += 1;
-		  console.log(window.myGameValues.NbrMortValues);
+	  
+		  const sceneKey = this.scene.scene.key;
+	  
+		  // Vérifier le nom de la scène pour déterminer où stocker les morts
+		  if (sceneKey.startsWith("MONDE_1")) {
+			window.myGameValues.NbrMortValuesMonde1 += 1;
+			console.log(window.myGameValues.NbrMortValuesMonde1);
+		  } else if (sceneKey.startsWith("MONDE_2")) {
+			window.myGameValues.NbrMortValuesMonde2 += 1;
+			console.log(window.myGameValues.NbrMortValuesMonde2);
+		  }
 		});
-	}
+	  }
+	  
+	  
 
 }

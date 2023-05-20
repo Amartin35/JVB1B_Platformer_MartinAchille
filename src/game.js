@@ -1,4 +1,4 @@
-import HUB from "./niveaux/hub.js";
+import HUB from "./niveaux/score_and_hub/hub.js";
 import MONDE_1_NIVEAU_1 from "./niveaux/monde/monde_1/monde_1_niveau_1.js";
 import MONDE_1_NIVEAU_10 from "./niveaux/monde/monde_1/monde_1_niveau_10.js";
 import MONDE_1_NIVEAU_2 from "./niveaux/monde/monde_1/monde_1_niveau_2.js";
@@ -19,6 +19,7 @@ import MONDE_2_NIVEAU_6 from "./niveaux/monde/monde_2/monde_2_niveau_6.js";
 import MONDE_2_NIVEAU_7 from "./niveaux/monde/monde_2/monde_2_niveau_7.js";
 import MONDE_2_NIVEAU_8 from "./niveaux/monde/monde_2/monde_2_niveau_8.js";
 import MONDE_2_NIVEAU_9 from "./niveaux/monde/monde_2/monde_2_niveau_9.js";
+import END_MONDE_SCENE1 from "./niveaux/score_and_hub/score_monde_1.js";
 
 
 
@@ -63,6 +64,7 @@ var config = {
 	scene: [
 		
 		HUB,
+		END_MONDE_SCENE1,
 
 
 		MONDE_1_NIVEAU_1,
