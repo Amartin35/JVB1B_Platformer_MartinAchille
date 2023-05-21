@@ -226,7 +226,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.scene.cameras.main.shake(200);
 		this.scene.time.delayedCall(100, () => {
 		  this.scene.scene.restart();
-	  
+		  
 		  const sceneKey = this.scene.scene.key;
 	  
 		  // Vérifier le nom de la scène pour déterminer où stocker les morts
