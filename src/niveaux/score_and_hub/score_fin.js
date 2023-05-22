@@ -5,8 +5,8 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 
 	create() {
 		// Affichage du temps et du nombre de morts globaux
-		const tempsGlobale = window.myGameValues.TimerValuesMonde1 + window.myGameValues.TimerValuesMonde2;
-		const mortsGlobale = window.myGameValues.NbrMortValuesMonde1 + window.myGameValues.NbrMortValuesMonde2;
+		const tempsGlobale = window.myGameValues.TimerValuesMonde1 + window.myGameValues.TimerValuesMonde2 + + window.myGameValues.TimerValuesMonde3;
+		const mortsGlobale = window.myGameValues.NbrMortValuesMonde1 + window.myGameValues.NbrMortValuesMonde2 + window.myGameValues.NbrMortValuesMonde3;
 
 		this.timeText = this.add.text(10, 10, "Time Global : 0", { font: "16px Arial", fill: "#ffffff" });
 		this.deathText = this.add.text(10, 50, "Death Global: 0", { font: "16px Arial", fill: "#ffffff" });

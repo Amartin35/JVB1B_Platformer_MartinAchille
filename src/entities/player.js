@@ -236,7 +236,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		  } else if (sceneKey.startsWith("MONDE_2")) {
 			window.myGameValues.NbrMortValuesMonde2 += 1;
 			console.log(window.myGameValues.NbrMortValuesMonde2);
+		  } else if (sceneKey.startsWith("MONDE_3")) {
+			window.myGameValues.NbrMortValuesMonde3 += 1;
+			console.log(window.myGameValues.NbrMortValuesMonde3);
 		  }
+
 		});
 	  }
 	  

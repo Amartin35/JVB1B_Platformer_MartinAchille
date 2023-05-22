@@ -53,7 +53,7 @@ export default class END_MONDE_SCENE2 extends Phaser.Scene {
 		nextLevelText.setInteractive();
 		
 		nextLevelText.on("pointerup", () => {
-			this.scene.start("END_JEU_SCENE");
+			this.scene.start("MONDE_3_NIVEAU_1");
 		});
 		
 		// Ajout de l'effet de surbrillance lorsque la souris passe sur le texte "Monde suivant"

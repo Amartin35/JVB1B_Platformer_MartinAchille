@@ -22,6 +22,9 @@ import MONDE_2_NIVEAU_9 from "./niveaux/monde/monde_2/monde_2_niveau_9.js";
 import END_MONDE_SCENE1 from "./niveaux/score_and_hub/score_monde_1.js";
 import END_MONDE_SCENE2 from "./niveaux/score_and_hub/score_monde_2.js";
 import END_JEU_SCENE from "./niveaux/score_and_hub/score_fin.js";
+import MONDE_3_NIVEAU_1 from "./niveaux/monde/monde_3/monde_3_niveau_1.js";
+import MONDE_3_NIVEAU_2 from "./niveaux/monde/monde_3/monde_3_niveau_2.js";
+import MONDE_3_NIVEAU_4 from "./niveaux/monde/monde_3/monde_3_niveau_4.js";
 
 
 
@@ -92,7 +95,13 @@ var config = {
 		MONDE_2_NIVEAU_7,
 		MONDE_2_NIVEAU_8,
 		MONDE_2_NIVEAU_9,
-		MONDE_2_NIVEAU_10
+		MONDE_2_NIVEAU_10,
+
+
+		MONDE_3_NIVEAU_1,
+		MONDE_3_NIVEAU_2,
+		MONDE_3_NIVEAU_4,
+		
 		
 
 

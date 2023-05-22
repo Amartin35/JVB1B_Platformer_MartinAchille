@@ -30,11 +30,19 @@ export default class HUB extends Phaser.Scene{
 		this.load.tilemapTiledJSON('map_monde_2_niveau_8', 'src/assets/map/monde_2/monde_2_niveau_8_01.json');
 		this.load.tilemapTiledJSON('map_monde_2_niveau_9', 'src/assets/map/monde_2/monde_2_niveau_9_01.json');
 		this.load.tilemapTiledJSON('map_monde_2_niveau_10', 'src/assets/map/monde_2/monde_2_niveau_10_01.json');
+
+		this.load.tilemapTiledJSON('map_monde_3_niveau_1', 'src/assets/map/monde_3/monde_3_niveau_1_01.json');
+		this.load.tilemapTiledJSON('map_monde_3_niveau_2', 'src/assets/map/monde_3/monde_3_niveau_2_01.json');
+	//	this.load.tilemapTiledJSON('map_monde_3_niveau_3', 'src/assets/map/monde_3/monde_3_niveau_3_01.json');
+		this.load.tilemapTiledJSON('map_monde_3_niveau_4', 'src/assets/map/monde_3/monde_3_niveau_4_01.json');
+	
 		
 		
 		
 		// Image
 		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
+		this.load.image("laser", "src/assets/sprite_props/Sprite_asset_laser.png");
+
 		
 		
 		// Spritesheet
@@ -42,15 +50,15 @@ export default class HUB extends Phaser.Scene{
 			frameWidth: 32,
 			frameHeight: 64
 		});
-		this.load.spritesheet("scie","src/assets/Sprite_asset_scie.png", {
+		this.load.spritesheet("scie","src/assets/sprite_props/Sprite_asset_scie.png", {
 			frameWidth: 64,
 			frameHeight: 64
 		});
-		this.load.spritesheet("bouton","src/assets/Sprite_asset_bouton.png", {
+		this.load.spritesheet("bouton","src/assets/sprite_props/Sprite_asset_bouton.png", {
 			frameWidth: 32,
 			frameHeight: 12
 		});
-		this.load.spritesheet("porte","src/assets/Sprite_asset_porte.png", {
+		this.load.spritesheet("porte","src/assets/sprite_props/Sprite_asset_porte.png", {
 			frameWidth: 11,
 			frameHeight: 32
 		});

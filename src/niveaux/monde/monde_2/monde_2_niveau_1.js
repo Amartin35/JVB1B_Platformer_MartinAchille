@@ -37,7 +37,7 @@ export default class MONDE_2_NIVEAU_1 extends Phaser.Scene{
 		this.player = new Player(this, 48, 350, 'perso');
 		this.physics.world.setBounds(0, 0, 896, 448);
 		
-		this.time.delayedCall(1000, () => {
+		this.time.delayedCall(TIME_DOPPELGANGER, () => {
 			this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
 			this.physics.add.collider(this.doppelganger, solideLayer);
 			this.physics.add.collider(this.doppelganger, this.player, () => {

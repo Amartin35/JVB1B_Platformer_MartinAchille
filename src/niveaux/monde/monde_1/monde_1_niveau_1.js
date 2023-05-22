@@ -5,8 +5,9 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 	constructor() {
 		super({ key: "MONDE_1_NIVEAU_1" });
 	}
-
+	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create() {
+		// Map
 		const map = this.add.tilemap("map_monde_1_niveau_1");
 		const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
 
@@ -15,10 +16,11 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 		const debutLayer = map.createLayer("Debut", tileset).setDepth(DEBUT_LAYER_DEPTH);
 		const finLayer = map.createLayer("Fin", tileset).setDepth(FIN_LAYER_DEPTH);
 
+		// Ajout class
 		this.player = new Player(this, 48, 350, 'perso');
 		this.physics.world.setBounds(0, 0, 896, 448);
 
-		this.time.delayedCall(1000, () => {
+		this.time.delayedCall(TIME_DOPPELGANGER, () => {
 			this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
 			this.physics.add.collider(this.doppelganger, solideLayer);
 			this.physics.add.collider(this.doppelganger, this.player, () => {
@@ -30,6 +32,7 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 		}, [], this);
 
 
+		// Collision
 		solideLayer.setCollisionByExclusion(-1, true);
 		finLayer.setCollisionByExclusion(-1, true);
 		this.physics.add.collider(this.player, solideLayer);
@@ -38,11 +41,12 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 			console.log("switch");
 		});
 
+		
 		this.timeText = this.add.text(10, 10, "Temps : 0", { font: "16px Arial", fill: "#ffffff" });
 		this.deathText = this.add.text(10, 50, "Temps : 0", { font: "16px Arial", fill: "#ffffff" });
 		this.cameras.main.setBounds(0, 0, 896, 448);
 	}
-
+/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update() {
 		this.player.update();
 
