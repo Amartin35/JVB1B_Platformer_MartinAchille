@@ -43,7 +43,7 @@ export default class HUB extends Phaser.Scene{
 			frameWidth: 32,
 			frameHeight: 64
 		});
-		this.load.spritesheet("scie","src/assets/sprite_props/Sprite_asset_scie.png", {
+		this.load.spritesheet("scie","src/assets/sprite_props/Sprite_asset_scie2.png", {
 			frameWidth: 64,
 			frameHeight: 64
 		});

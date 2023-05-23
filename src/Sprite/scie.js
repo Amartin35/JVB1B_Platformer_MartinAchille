@@ -12,13 +12,10 @@ export default class Scie extends Phaser.GameObjects.Sprite {
 	}
 	
 	createAnimsScies() {
-		this.anims.create({
+		this.scene.anims.create({
 			key: 'scie-anim',
-			frames: [
-				{ key: 'scie', frame: 0 },
-				{ key: 'scie', frame: 1 }
-			],
-			frameRate: 10,
+			frames: this.scene.anims.generateFrameNumbers('scie', { start: 0, end: 9 }),
+			frameRate: 18,
 			repeat: -1
 		});
 		this.play('scie-anim');

@@ -144,7 +144,7 @@ export default class MONDE_3_NIVEAU_3 extends Phaser.Scene {
             laser.destroyLaser();
         });
         this.physics.add.collider(this.player, finLayer, () => {
-            this.scene.start("END_JEU_SCENE", {});
+            this.scene.start("MONDE_3_NIVEAU_4", {});
             console.log("switch");
         });
 
