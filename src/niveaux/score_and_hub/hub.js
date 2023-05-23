@@ -2,10 +2,6 @@ export default class HUB extends Phaser.Scene{
 	constructor() {
 		super({key : "HUB"}); // mettre le meme nom que le nom de la classe
 	}
-	
-	
-	
-	
 	/////////////////////////////////////// PRELOAD ///////////////////////////////////////
 	preload() {
 		// Tilemap
@@ -33,17 +29,14 @@ export default class HUB extends Phaser.Scene{
 
 		this.load.tilemapTiledJSON('map_monde_3_niveau_1', 'src/assets/map/monde_3/monde_3_niveau_1_01.json');
 		this.load.tilemapTiledJSON('map_monde_3_niveau_2', 'src/assets/map/monde_3/monde_3_niveau_2_01.json');
-	//	this.load.tilemapTiledJSON('map_monde_3_niveau_3', 'src/assets/map/monde_3/monde_3_niveau_3_01.json');
+		this.load.tilemapTiledJSON('map_monde_3_niveau_3', 'src/assets/map/monde_3/monde_3_niveau_3_01.json');
 		this.load.tilemapTiledJSON('map_monde_3_niveau_4', 'src/assets/map/monde_3/monde_3_niveau_4_01.json');
-	
-		
-		
-		
+
+
 		// Image
 		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
 		this.load.image("laser", "src/assets/sprite_props/Sprite_asset_laser.png");
 
-		
 		
 		// Spritesheet
 		this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2-sheet.png", {
@@ -63,25 +56,17 @@ export default class HUB extends Phaser.Scene{
 			frameHeight: 32
 		});
 	}
-	
 	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create(){
 		this.clavier = this.input.keyboard.createCursorKeys();
-		
-		
-		// Ajout du texte
 		this.add.text(300, 200, "Appuyez sur ESPACE", {
 			fontSize: "32px",
 			fill: "#fff",
-			fontFamily: "Arial"
+			fontFamily: "Impact"
 		});
-		
-		
 	}
-	
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update(){
-		//LANCE PREMIERE SCENE QUAND ESPACE APPUYE
 		if (Phaser.Input.Keyboard.JustDown(this.clavier.space)){
 			this.scene.start("MONDE_1_NIVEAU_1",{
 			});

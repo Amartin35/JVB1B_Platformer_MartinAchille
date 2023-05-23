@@ -2,7 +2,7 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 	constructor() {
 		super({ key: "END_JEU_SCENE" });
 	}
-
+	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create() {
 		// Affichage du temps et du nombre de morts globaux
 		const tempsGlobale = window.myGameValues.TimerValuesMonde1 + window.myGameValues.TimerValuesMonde2 + + window.myGameValues.TimerValuesMonde3;
@@ -19,7 +19,7 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 		let m = Math.floor(tempsGlobale / (60 * 1000)) % 60;
 		let h = Math.floor(tempsGlobale / (60 * 60 * 1000)) % 99; // Limite de 99 heures
 
-		// Mettre en forme le texte du chronomètre
+		// Texte du chronomètre
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(3, "0")}`;
 
 		let textDeath = 'Death : ' + mortsGlobale;
@@ -36,7 +36,6 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 		});
 		restartText.setOrigin(0.5);
 		restartText.setInteractive();
-
 		restartText.on("pointerup", () => {
 			window.myGameValues.TimerValuesMonde1 = 0; // Réinitialise le temps à 0
 			window.myGameValues.NbrMortValuesMonde1 = 0;
@@ -49,7 +48,6 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 		restartText.on("pointerover", () => {
 			restartText.setBackgroundColor("#808080");
 		});
-
 		restartText.on("pointerout", () => {
 			restartText.setBackgroundColor("#000000");
 		});

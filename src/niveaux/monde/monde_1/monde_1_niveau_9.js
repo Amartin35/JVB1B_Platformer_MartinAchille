@@ -4,37 +4,34 @@ import Scie from "../../../Sprite/scie.js";
 
 export default class MONDE_1_NIVEAU_9 extends Phaser.Scene{
 	constructor() {
-		super({key : "MONDE_1_NIVEAU_9"}); // mettre le meme nom que le nom de la classe
+		super({key : "MONDE_1_NIVEAU_9"});
 	}
-
-	
 	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create(){
+		// Map
 		const map = this.add.tilemap("map_monde_1_niveau_9");
 		const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
 
-		const backgroundLayer = map.createLayer(
-			"Background",
-			tileset
-		).setDepth(BACKGROUND_LAYER_DEPTH);
-		
-		const solideLayer = map.createLayer(
-			"Solide",
-			tileset
-		).setDepth(SOLIDE_LAYER_DEPTH);
+		const backgroundLayer = map.createLayer("Background",tileset).setDepth(BACKGROUND_LAYER_DEPTH);
+		const solideLayer = map.createLayer("Solide",tileset).setDepth(SOLIDE_LAYER_DEPTH);
+		const debutLayer = map.createLayer("Debut",tileset).setDepth(DEBUT_LAYER_DEPTH);
+		const obstaclesLayer = map.getObjectLayer("Obstacles",);
+		const finLayer = map.createLayer("Fin",tileset).setDepth(FIN_LAYER_DEPTH);
+	
 
-		// Layer a enlever
-		const debutLayer = map.createLayer(
-			"Debut",
-			tileset
-		).setDepth(DEBUT_LAYER_DEPTH);
-		
-		const obstaclesLayer = map.getObjectLayer(
-			"Obstacles",
-		);
+		// Ajout class
+		this.player = new Player(this, 32, 32, 'perso');
+		this.time.delayedCall(TIME_DOPPELGANGER, () => {
+			this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
+			this.physics.add.collider(this.doppelganger, solideLayer);
+			this.physics.add.collider(this.doppelganger, this.player, () => {
+				this.player.playerDeath();
+			});
+			const playerPositions = this.player.getPlayerPositions();
+			this.doppelganger.setPositions(playerPositions);
+		}, [], this);
 
 		const obstaclesGroup = this.physics.add.group();
-
 		obstaclesLayer.objects.forEach(obj => {
 			if (obj.properties[0]?.value === 'scie') {
 				var scie = new Scie(this, obj.x, obj.y);
@@ -45,26 +42,9 @@ export default class MONDE_1_NIVEAU_9 extends Phaser.Scene{
 			}
 		});
 
-		const finLayer = map.createLayer(
-			"Fin",
-			tileset
-		).setDepth(FIN_LAYER_DEPTH);
-	
-		this.player = new Player(this, 32, 32, 'perso');
+
+		// Collision
 		this.physics.world.setBounds(0, 0, 896, 448);
-
-		this.time.delayedCall(TIME_DOPPELGANGER, () => {
-			this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
-			this.physics.add.collider(this.doppelganger, solideLayer);
-			this.physics.add.collider(this.doppelganger, this.player, () => {
-				this.player.playerDeath();
-			});
-		
-			const playerPositions = this.player.getPlayerPositions();
-			this.doppelganger.setPositions(playerPositions);
-		}, [], this);
-
-	
 		solideLayer.setCollisionByExclusion(-1, true); 
 		finLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
@@ -77,9 +57,9 @@ export default class MONDE_1_NIVEAU_9 extends Phaser.Scene{
 			console.log("switch");
 		});
 
+
 		this.timeText = this.add.text(10, 10, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
 		this.deathText = this.add.text(10, 50, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
-		// Ajout de la caméra
 		this.cameras.main.setBounds(0, 0, 896, 448);
 	}
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
@@ -102,8 +82,6 @@ export default class MONDE_1_NIVEAU_9 extends Phaser.Scene{
 		let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde1;
 
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
-		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
-
-		
+		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);		
 	}
 }

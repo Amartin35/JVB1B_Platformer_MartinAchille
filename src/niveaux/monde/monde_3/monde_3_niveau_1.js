@@ -8,8 +8,9 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
         super({ key: "MONDE_3_NIVEAU_1" });
         this.solideLayer = null;
     }
-
+	/////////////////////////////////////// CREATE ///////////////////////////////////////
     create() {
+        // Map
         const map = this.add.tilemap("map_monde_3_niveau_1");
         const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
 
@@ -20,16 +21,15 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
         const laserLayer = map.createLayer("Laser", tileset).setDepth(LASER_LAYER_DEPTH);
         const finLayer = map.createLayer("Fin", tileset).setDepth(FIN_LAYER_DEPTH);
 
-        this.player = new Player(this, 32, 64, 'perso');
-        this.physics.world.setBounds(0, 0, 896, 448);
 
+        // Ajout class
+        this.player = new Player(this, 32, 64, 'perso');
         this.time.delayedCall(TIME_DOPPELGANGER, () => {
             this.doppelganger = new Doppelganger(this, 32, 64, 'perso');
             this.physics.add.collider(this.doppelganger, this.solideLayer);
             this.physics.add.collider(this.doppelganger, this.player, () => {
                 this.player.playerDeath();
             });
-
             const playerPositions = this.player.getPlayerPositions();
             this.doppelganger.setPositions(playerPositions);
         }, [], this);
@@ -53,9 +53,7 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
 
         this.lasers = [];
         this.isSceneRunning = true;
-
         this.createLasers();
-
         this.time.addEvent({
             delay: 900,
             loop: true,
@@ -63,6 +61,9 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
             callbackScope: this
         });
 
+
+        // Collision
+        this.physics.world.setBounds(0, 0, 896, 448);
         this.solideLayer.setCollisionByExclusion(-1, true);
         finLayer.setCollisionByExclusion(-1, true);
         this.physics.add.collider(this.player, this.solideLayer);
@@ -70,19 +71,18 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
             this.player.playerDeath();
             this.destroyLasers();
         });
-
         this.physics.add.collider(this.lasers, this.solideLayer, (laser) => {
             laser.destroyLaser();
         });
-
         this.physics.add.collider(this.player, this.scie, () => {
             this.player.playerDeath();
         });
-
         this.physics.add.collider(this.player, finLayer, () => {
             this.scene.start("MONDE_3_NIVEAU_2", {});
             console.log("switch");
         });
+
+
 
         this.timeText = this.add.text(10, 10, "Temps : 0", { font: "16px Arial", fill: "#ffffff" });
         this.deathText = this.add.text(10, 50, "Temps : 0", { font: "16px Arial", fill: "#ffffff" });
@@ -111,7 +111,7 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
         }
         this.lasers = [];
     }
-
+	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
     update() {
         this.player.update();
 

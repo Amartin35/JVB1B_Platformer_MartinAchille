@@ -4,58 +4,32 @@ import Scie from "../../../Sprite/scie.js";
 
 export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 	constructor() {
-		super({key : "MONDE_2_NIVEAU_4"}); // mettre le meme nom que le nom de la classe
+		super({key : "MONDE_2_NIVEAU_4"});
 	}
-	
-	
-
-	
 	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create(){
+		// Map
 		const map = this.add.tilemap("map_monde_2_niveau_4");
 		const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
 		
-		const backgroundLayer = map.createLayer(
-			"Background",
-			tileset
-		).setDepth(BACKGROUND_LAYER_DEPTH);
-			
-		const solideLayer = map.createLayer(
-			"Solide",
-			tileset
-		).setDepth(SOLIDE_LAYER_DEPTH);
-		// Layer a enlever
-		const debutLayer = map.createLayer(
-			"Debut",
-			tileset
-		).setDepth(DEBUT_LAYER_DEPTH);
-
-        const reposeTweenLayer = map.createLayer(
-			"ReposeTween",
-			tileset
-		).setDepth(REPOSE_TWEEN_LAYER_DEPTH);
-
-		const finLayer = map.createLayer(
-			"Fin",
-			tileset
-		).setDepth(FIN_LAYER_DEPTH);
+		const backgroundLayer = map.createLayer("Background",tileset).setDepth(BACKGROUND_LAYER_DEPTH);
+		const solideLayer = map.createLayer("Solide",tileset).setDepth(SOLIDE_LAYER_DEPTH);
+		const debutLayer = map.createLayer("Debut",tileset).setDepth(DEBUT_LAYER_DEPTH);
+        const reposeTweenLayer = map.createLayer("ReposeTween",tileset).setDepth(REPOSE_TWEEN_LAYER_DEPTH);
+		const finLayer = map.createLayer("Fin",tileset).setDepth(FIN_LAYER_DEPTH);
 			
 			
-		
+		// Ajout class
 		this.player = new Player(this, 48, 300, 'perso');
-		this.physics.world.setBounds(0, 0, 896, 448);
-
 		this.time.delayedCall(TIME_DOPPELGANGER, () => {
 			this.doppelganger = new Doppelganger(this, 48, 350, 'perso');
 			this.physics.add.collider(this.doppelganger, solideLayer);
 			this.physics.add.collider(this.doppelganger, this.player, () => {
 				this.player.playerDeath();
 			});
-		
 			const playerPositions = this.player.getPlayerPositions();
 			this.doppelganger.setPositions(playerPositions);
 		}, [], this);	
-
         this.scieHB = new Scie(this, 400, 368).setDepth(TWEEN_MOUVEMENT);
         this.scieHB.body.allowGravity = false;
         this.scieHB.body.setCircle(28, 4, 4);
@@ -63,7 +37,6 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
         this.scieGD.body.allowGravity = false;
         this.scieGD.body.setCircle(28, 4, 4);
 
-      
         let tween_mouvement_scieHB = this.tweens.add({
             targets: [this.scieHB],
             paused: false,
@@ -76,7 +49,6 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
             repeatDelay: 250,
             repeat: -1
         });
-        
         let tween_mouvement_scieGD = this.tweens.add({
             targets: [this.scieGD],
             paused: false,
@@ -91,8 +63,8 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
         });
         
 
-
-		
+		// Collision
+		this.physics.world.setBounds(0, 0, 896, 448);
 		solideLayer.setCollisionByExclusion(-1, true); 
 		finLayer.setCollisionByExclusion(-1, true); 
 		this.physics.add.collider(this.player, solideLayer);
@@ -110,9 +82,9 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 		});	
 
 
+
 		this.timeText = this.add.text(10, 10, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
 		this.deathText = this.add.text(10, 50, "Temps : 0", {font: "16px Arial", fill: "#ffffff"});
-		// Ajout de la caméra
 		this.cameras.main.setBounds(0, 0, 896, 448);
 	}
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
@@ -144,9 +116,6 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 		  let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde2;
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
-
 	}
-	
-	  
-	  
+
 }	

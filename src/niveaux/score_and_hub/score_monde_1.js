@@ -2,7 +2,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 	constructor() {
 		super({ key: "END_MONDE_SCENE1" });
 	}
-	
+	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create() {
 		// Calcul du nombre d'étoiles en fonction du temps et du nombre de morts
 		const stars = this.calculateStars();
@@ -78,7 +78,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		let m = Math.floor(window.myGameValues.TimerValuesMonde1 / (60 * 1000)) % 60;
 		let h = Math.floor(window.myGameValues.TimerValuesMonde1 / (60 * 60 * 1000)) % 99; // Limite de 99 heures
 		
-		// Mettre en forme le texte du chronomètre
+		// Texte du chronomètre
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(3, "0")}`;
 		
 		let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde1;
@@ -92,9 +92,9 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		
 		// Seuils de temps et de morts pour chaque étoile (en secondes)
 		const seuilsEtoiles = [
-			{ temps: 60, morts: 1 },   // 3 étoiles : moins de 1 minute et 1 mort ou moins
-			{ temps: 250, morts: 8 },  // 2 étoiles : moins de 4 minutes et 8 morts ou moins
-			{ temps: 500, morts: 15 }  // 1 étoile : moins de 8 minutes et 15 morts ou moins
+			{ temps: 60, morts: 4 },  
+			{ temps: 160, morts: 15 },
+			{ temps: 350, morts: 25 }
 		];
 		
 		// Parcours des seuils pour déterminer le nombre d'étoiles atteint
@@ -105,7 +105,6 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 				return 3 - i;
 			}
 		}
-		
 		return 0;
 	}
 }

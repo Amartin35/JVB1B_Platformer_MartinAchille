@@ -15,11 +15,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.setDepth(PLAYER_LAYER_DEPTH);
 		this.body.setCircle(7.5, 9, 49);
 
-		
-
 		this.CreateAnimations();
 		
-
 		this.direction = "right"; 
 		this.wallJumping = true;
 	
@@ -27,9 +24,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.isJumping = false;
 		this.positions = [];
 	}
-	
+	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update(){
-		
 		// Aide saut
 		if(!this.body.blocked.down){
 			setTimeout(() => {
@@ -39,6 +35,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		else{
 			this.isJumping = false;
 		}
+
+
 
 		// Déplacement
 		if (this.clavier.up.isDown && this.onGround && !this.isJumping) {
@@ -67,44 +65,41 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			}
 		}
 
+
 	
 		// Wall Jump
 		const onWall = this.body.blocked.left || this.body.blocked.right;
 	
-
 		if (onWall && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump && !this.touchingWorldBounds) {
 		  this.wallJumping = false;
 		  this.body.setVelocityY(-PLAYER_JUMP);
 		
 		  // Décalage vers la gauche
-		  const wallOffset = 25; // Augmentation du décalage du mur à 50 pixels
+		  const wallOffset = 25; 
 		  if (this.body.blocked.left) {
 			this.scene.tweens.add({
 			  targets: this,
-			  x: this.x + wallOffset, // Utilisation de tweens pour déplacer le joueur de manière plus smooth
+			  x: this.x + wallOffset,
 			  duration: 200,
 			  ease: "Power1"
 			});
 		  } else {
 			this.scene.tweens.add({
 			  targets: this,
-			  x: this.x - wallOffset, // Utilisation de tweens pour déplacer le joueur de manière plus smooth
+			  x: this.x - wallOffset,
 			  duration: 200,
 			  ease: "Power1"
 			});
 		  }
-		
 		  this.body.setVelocityX(-this.body.velocity.x);
 		  setTimeout(() => {
 			this.wallJumping = true;
 		  }, 600);
 		}
 		
-		
 		else if (onWall && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
 			this.body.setVelocityY(-this.body.velocity.y / 4); 
 		}
-
 
 
 
@@ -146,26 +141,25 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 				}
 			}
 		}
+
+
+		// Tue au bords bas de l'ecran
 		if (this.checkWorldBounds()) {
 			this.touchingWorldBounds = true;
 		  } 
 		  else {
 			this.touchingWorldBounds = false;
 		  }
-		  
-		if(this.y > 410) this.playerDeath();
+		if(this.y > 415) this.playerDeath();
 
-		// Stocker les positions du sprite dans le tableau
+
+		// Stocke les positions du sprite dans le tableau
 		this.positions.push({ x: this.x, y: this.y });
-		// Limiter la taille du tableau
-		const maxPositions = 30000; // Modifier la taille maximale selon vos besoins
+		const maxPositions = 30000;
 		if (this.positions.length > maxPositions) {
-		this.positions.shift(); // Supprimer la première position pour conserver la taille maximale
+		this.positions.shift();
 		}
 	}
-
-
-
 
 	
 	CreateAnimations() {
@@ -215,11 +209,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		return this.positions;
 	}
 	
+
 	checkWorldBounds() {
 		const worldBounds = this.scene.physics.world.bounds;
 		const playerBounds = this.getBounds();
 		return !Phaser.Geom.Rectangle.ContainsRect(worldBounds, playerBounds);
 	}
+
 
 	playerDeath() {
 		// Fonction de kill
@@ -242,8 +238,5 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		  }
 
 		});
-	  }
-	  
-	  
-
+	}
 }
