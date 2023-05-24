@@ -12,8 +12,8 @@ export default class MONDE_2_NIVEAU_3 extends Phaser.Scene{
 		const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
 	
 		const backgroundLayer = map.createLayer("Background",tileset).setDepth(BACKGROUND_LAYER_DEPTH);
+		const propsLayer = map.createLayer("Props", tileset).setDepth(PROPS_LAYER_DEPTH);
 		const solideLayer = map.createLayer("Solide",tileset).setDepth(SOLIDE_LAYER_DEPTH);
-		const debutLayer = map.createLayer("Debut",tileset).setDepth(DEBUT_LAYER_DEPTH);
 		const finLayer = map.createLayer("Fin",tileset).setDepth(FIN_LAYER_DEPTH);
 			
 			
