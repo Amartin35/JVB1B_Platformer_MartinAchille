@@ -41,6 +41,7 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 			window.myGameValues.NbrMortValuesMonde1 = 0;
 			window.myGameValues.TimerValuesMonde2 = 0;
 			window.myGameValues.NbrMortValuesMonde2 = 0;
+			window.myGameValues.hasWallJump = false;
 			this.scene.start("MONDE_1_NIVEAU_1");
 		});
 

@@ -14,6 +14,8 @@ export default class MONDE_3_NIVEAU_4 extends Phaser.Scene {
         const tileset = map.addTilesetImage("Assets_marioLike", "TileSet");
 
         const backgroundLayer = map.createLayer("Background", tileset).setDepth(BACKGROUND_LAYER_DEPTH);
+        const barriereLayer = map.createLayer("Barriere", tileset).setDepth(BARRIERE_LAYER_DEPTH);
+        const propsLayer = map.createLayer("Props", tileset).setDepth(PROPS_LAYER_DEPTH);
         const solideLayer = map.createLayer("Solide", tileset).setDepth(SOLIDE_LAYER_DEPTH);
         const acideLayer = map.createLayer("Acide", tileset).setDepth(ACIDE_LAYER_DEPTH);
         const obstaclesLayer = map.getObjectLayer("Obstacles",);

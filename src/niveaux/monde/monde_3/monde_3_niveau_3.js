@@ -18,6 +18,7 @@ export default class MONDE_3_NIVEAU_3 extends Phaser.Scene {
 
         const backgroundLayer = map.createLayer("Background", tileset).setDepth(BACKGROUND_LAYER_DEPTH);
         this.solideLayer = map.createLayer("Solide", tileset).setDepth(SOLIDE_LAYER_DEPTH);
+        const barriereLayer = map.createLayer("Barriere", tileset).setDepth(BARRIERE_LAYER_DEPTH);
         const obstaclesLayer = map.getObjectLayer("Obstacles",);
         const reposeTweenLayer = map.createLayer("ReposeTween", tileset).setDepth(REPOSE_TWEEN_LAYER_DEPTH);
         const laserLayer = map.createLayer("Laser", tileset).setDepth(LASER_LAYER_DEPTH);
