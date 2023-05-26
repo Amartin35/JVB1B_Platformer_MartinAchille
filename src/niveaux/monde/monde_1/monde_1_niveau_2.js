@@ -16,6 +16,8 @@ export default class MONDE_1_NIVEAU_2 extends Phaser.Scene{
 		const propsLayer = map.createLayer("Props", tileset).setDepth(PROPS_LAYER_DEPTH);
 		const finLayer = map.createLayer("Fin",tileset).setDepth(FIN_LAYER_DEPTH);
 			
+		this.add.image(0, 0, 'BackgroundM1').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
+
 
 		// Ajout class
 		this.player = new Player(this, 48, 350, 'perso');

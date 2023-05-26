@@ -35,6 +35,7 @@ export default class HUB extends Phaser.Scene{
 
 		// Image
 		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
+		this.load.image("BackgroundM1", "src/assets/BackgroundMonde1.png");
 		this.load.image("laser", "src/assets/sprite_props/Sprite_asset_laser.png");
 
 		
