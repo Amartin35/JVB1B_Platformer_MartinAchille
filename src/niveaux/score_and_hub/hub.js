@@ -36,6 +36,7 @@ export default class HUB extends Phaser.Scene{
 		// Image
 		this.load.image("TileSet", "src/assets/Assets_marioLike.png");
 		this.load.image("BackgroundM1", "src/assets/BackgroundMonde1.png");
+		this.load.image("BackgroundM2", "src/assets/BackgroundMonde2.png");
 		this.load.image("laser", "src/assets/sprite_props/Sprite_asset_laser.png");
 
 		
@@ -69,7 +70,7 @@ export default class HUB extends Phaser.Scene{
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update(){
 		if (Phaser.Input.Keyboard.JustDown(this.clavier.space)){
-			this.scene.start("MONDE_1_NIVEAU_1",{
+			this.scene.start("MONDE_2_NIVEAU_1",{
 			});
 		} 
 	}

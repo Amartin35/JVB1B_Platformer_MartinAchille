@@ -21,6 +21,8 @@ export default class MONDE_2_NIVEAU_8 extends Phaser.Scene{
 		const finLayer = map.createLayer("Fin",tileset).setDepth(FIN_LAYER_DEPTH);
 	
 
+		this.add.image(0, 0, 'BackgroundM2').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
+
 		// Ajout class
 		this.player = new Player(this, 32, 288, 'perso');
 		this.time.delayedCall(TIME_DOPPELGANGER, () => {
