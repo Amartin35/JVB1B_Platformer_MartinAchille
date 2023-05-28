@@ -1,3 +1,5 @@
+import Etoiles from "../../Sprite/etoiles.js";
+
 export default class END_MONDE_SCENE1 extends Phaser.Scene {
 	constructor() {
 		super({ key: "END_MONDE_SCENE1" });
@@ -7,14 +9,20 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		// Calcul du nombre d'étoiles en fonction du temps et du nombre de morts
 		const stars = this.calculateStars();
 		
+		this.add.image(0, 0, 'BackgroundM1').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
+
 		// Affichage du texte avec le résultat
 		const resultText = this.add.text(400, 200, `Vous avez obtenu ${stars} étoiles !`, {
 			fontSize: "32px",
-			fontFamily: "Impact",
+			fontFamily: "Impact", 
 			color: "#ffffff",
 			align: "center"
 		});
 		resultText.setOrigin(0.5);
+		resultText.setDepth(CHRONO_LAYER_DEPTH);
+
+		const etoilesSprite = new Etoiles(this, 315, 120);
+		etoilesSprite.playAnimsEtoiles(stars);
 		
 		// Options pour recommencer ou passer au niveau suivant
 		const restartText = this.add.text(400, 300, "Recommencer", {
@@ -26,6 +34,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		});
 		restartText.setOrigin(0.5);
 		restartText.setInteractive();
+		restartText.setDepth(CHRONO_LAYER_DEPTH);
 		
 		restartText.on("pointerup", () => {
 			window.myGameValues.TimerValuesMonde1 = 0;// Réinitialise le temps à 0
@@ -51,6 +60,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		});
 		nextLevelText.setOrigin(0.5);
 		nextLevelText.setInteractive();
+		nextLevelText.setDepth(CHRONO_LAYER_DEPTH);
 		
 		nextLevelText.on("pointerup", () => {
 			this.scene.start("MONDE_2_NIVEAU_1");
