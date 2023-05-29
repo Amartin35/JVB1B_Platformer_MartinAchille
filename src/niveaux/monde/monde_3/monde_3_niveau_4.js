@@ -24,7 +24,7 @@ export default class MONDE_3_NIVEAU_4 extends Phaser.Scene {
 
         // Ajout class
         this.player = new Player(this, 440, 64, 'perso');
-        this.boss = new Boss(this, 832, 288, 'perso').setDepth(BOSS_LAYER_DEPTH);;
+        this.boss = new Boss(this, 880, 257).setDepth(BOSS_LAYER_DEPTH);;
         const obstaclesGroup = this.physics.add.group();
         const boutonGroup = this.physics.add.group();
         let isButtonPressed = false;
@@ -54,10 +54,11 @@ export default class MONDE_3_NIVEAU_4 extends Phaser.Scene {
 			if (!isButtonPressed) {
 				isButtonPressed = true;
 				this.bouton.playAnimsBoutonDown();
-                this.time.delayedCall(2000, () => {
+                this.boss.killBoss();
+                this.time.delayedCall(4200, () => {
                     this.boss.destroy();
                 });
-                this.time.delayedCall(3000, () => {
+                this.time.delayedCall(4200, () => {
                     this.scene.start("END_JEU_SCENE", {});
                     console.log("switch");
                 });
@@ -73,7 +74,7 @@ export default class MONDE_3_NIVEAU_4 extends Phaser.Scene {
     /////////////////////////////////////// UPDATE  ///////////////////////////////////////
     update() {
         this.player.update();
-
+        this.boss.update();
 
         const delta = this.game.loop.delta;
         window.myGameValues.TimerValuesMonde3 += delta;

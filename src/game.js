@@ -56,7 +56,7 @@ var config = {
 		arcade: {
 			debug: false,
 			gravity: {
-				y: GAME_GRAVITY // gravité verticale : acceleration ddes corps en pixels par seconde
+				y: GAME_GRAVITY 
 			},
 		},
 		input: { 
@@ -106,8 +106,6 @@ var config = {
 
 	]
 };
-
 var game = new Phaser.Game(config);
-game.scene.start("HUB"); // Lancement de la scene Menu
-
+game.scene.start("HUB"); // Lancement de la scène Menu
 

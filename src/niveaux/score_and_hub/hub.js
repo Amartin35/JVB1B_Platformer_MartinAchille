@@ -46,6 +46,14 @@ export default class HUB extends Phaser.Scene{
 			frameWidth: 32,
 			frameHeight: 64
 		});
+		this.load.spritesheet("doppel", "src/assets/entities/SpriteDopellganger.png", {
+			frameWidth: 32,
+			frameHeight: 64
+		});
+		this.load.spritesheet("boss", "src/assets/entities/SpriteBoss.png", {
+			frameWidth: 128,
+			frameHeight: 128
+		});
 		this.load.spritesheet("scie","src/assets/sprite_props/Sprite_asset_scie2.png", {
 			frameWidth: 64,
 			frameHeight: 64
@@ -62,6 +70,11 @@ export default class HUB extends Phaser.Scene{
 			frameWidth: 176,
 			frameHeight: 48
 		});
+
+
+		// Son
+		this.load.audio('music', 'src/assets/song/Song_of_Ooze.mp3');
+
 	}
 	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create(){
@@ -71,6 +84,13 @@ export default class HUB extends Phaser.Scene{
 			fill: "#fff",
 			fontFamily: "Impact"
 		});
+
+
+		this.music =  this.sound.add('music', {
+			loop: true
+		})
+		this.music.play()
+	
 	}
 	/////////////////////////////////////// UPDATE  ///////////////////////////////////////
 	update(){
@@ -79,4 +99,6 @@ export default class HUB extends Phaser.Scene{
 			});
 		} 
 	}
+
+
 }
