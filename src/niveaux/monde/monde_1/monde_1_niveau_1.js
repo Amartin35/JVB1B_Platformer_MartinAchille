@@ -17,6 +17,7 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 		const finLayer = map.createLayer("Fin", tileset).setDepth(FIN_LAYER_DEPTH);
 
 		this.add.image(0, 0, 'BackgroundM1').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
+		this.add.image(180, 0, 'Tuto').setOrigin(0).setDepth(PROPS_LAYER_DEPTH);
 
 
 		// Ajout class
@@ -45,6 +46,7 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 
 		this.timeText = this.add.text(10, 10, "Temps : 0", { font: "16px Arial", fill: "#ffffff" });
 		this.deathText = this.add.text(10, 50, "Temps : 0", { font: "16px Arial", fill: "#ffffff" });
+		this.tutoText = this.add.text(375, 215, "Temps : 0", { font: "16px Arial", fill: "#000000" });
 		this.cameras.main.setBounds(0, 0, 896, 448);
 	}
 /////////////////////////////////////// UPDATE  ///////////////////////////////////////
@@ -65,8 +67,11 @@ export default class MONDE_1_NIVEAU_1 extends Phaser.Scene {
 
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(3, "0")}`;
 		let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde1;
+		let textTuto = 'Movements'
 
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.tutoText.setText(textTuto).setFontFamily('Impact').setFontSize(22).setDepth(CHRONO_LAYER_DEPTH);
+
 	}
 }

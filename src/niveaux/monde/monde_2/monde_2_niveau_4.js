@@ -119,5 +119,4 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 	}
-
 }	

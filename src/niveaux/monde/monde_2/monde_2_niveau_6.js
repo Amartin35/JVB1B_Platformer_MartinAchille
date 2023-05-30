@@ -14,6 +14,7 @@ export default class MONDE_2_NIVEAU_6 extends Phaser.Scene{
 
 		const backgroundLayer = map.createLayer("Background",tileset).setDepth(BACKGROUND_LAYER_DEPTH);
 		const propsLayer = map.createLayer("Props", tileset).setDepth(PROPS_LAYER_DEPTH);
+		const paralaxeLayer = map.createLayer("Paralaxe", tileset).setDepth(PROPS_LAYER_DEPTH);
 		const solideLayer = map.createLayer("Solide",tileset).setDepth(SOLIDE_LAYER_DEPTH);
         const arriereLayer = map.createLayer("Arriere",tileset).setDepth(ARRIERE_LAYER_DEPTH);
 		const obstaclesLayer = map.getObjectLayer("Obstacles");

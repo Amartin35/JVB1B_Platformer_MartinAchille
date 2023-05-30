@@ -12,7 +12,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		this.add.image(0, 0, 'BackgroundM1').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
 
 		// Affichage du texte avec le résultat
-		const resultText = this.add.text(400, 200, `Vous avez obtenu ${stars} étoiles !`, {
+		const resultText = this.add.text(400, 200, `You've got ${stars} stars!`, {
 			fontSize: "32px",
 			fontFamily: "Impact", 
 			color: "#ffffff",
@@ -25,7 +25,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		etoilesSprite.playAnimsEtoiles(stars);
 		
 		// Options pour recommencer ou passer au niveau suivant
-		const restartText = this.add.text(400, 300, "Recommencer", {
+		const restartText = this.add.text(400, 300, "Start the world again", {
 			fontSize: "24px",
 			fontFamily: "Impact",
 			color: "#ffffff",
@@ -51,7 +51,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 			restartText.setBackgroundColor("#000000");
 		});
 		
-		const nextLevelText = this.add.text(400, 350, "Monde suivant", {
+		const nextLevelText = this.add.text(400, 350, "Next world", {
 			fontSize: "24px",
 			fontFamily: "Impact",
 			color: "#ffffff",
@@ -111,7 +111,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		for (let i = 0; i < seuilsEtoiles.length; i++) {
 			const seuil = seuilsEtoiles[i];
 			if (temps <= seuil.temps * 1000 && morts <= seuil.morts) {
-				const duree = `${Math.floor(seuil.temps / 60)} minutes`;
+				const duree = `${Math.floor(seuil.temps / 60)}`;
 				return 3 - i;
 			}
 		}
