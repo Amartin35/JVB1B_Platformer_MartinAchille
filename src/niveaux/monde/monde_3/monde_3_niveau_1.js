@@ -1,5 +1,6 @@
 import Doppelganger from "../../../entities/doppelganger.js";
 import Player from "../../../entities/player.js";
+import BackgroundM3 from "../../../Sprite/backgroundM3.js";
 import LaserDROITE from "../../../Sprite/laserDroite.js";
 import Scie from "../../../Sprite/scie.js";
 
@@ -21,7 +22,8 @@ export default class MONDE_3_NIVEAU_1 extends Phaser.Scene {
         const laserLayer = map.createLayer("Laser", tileset).setDepth(LASER_LAYER_DEPTH);
         const finLayer = map.createLayer("Fin", tileset).setDepth(FIN_LAYER_DEPTH);
 
-        this.add.image(0, 0, 'BackgroundM3').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
+        this.bg = new BackgroundM3(this, 0, 0, 'BackgroundM3').setDepth(BACKGROUND_LAYER_DEPTH);
+
 
         // Ajout class
         this.player = new Player(this, 32, 64, 'perso');

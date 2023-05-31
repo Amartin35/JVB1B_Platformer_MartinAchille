@@ -20,8 +20,7 @@ export default class MONDE_3_NIVEAU_4 extends Phaser.Scene {
         const acideLayer = map.createLayer("Acide", tileset).setDepth(ACIDE_LAYER_DEPTH);
         const obstaclesLayer = map.getObjectLayer("Obstacles",);
 
-        this.add.image(0, 0, 'BackgroundM3').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
-
+        this.bg = new BackgroundM3(this, 0, 0, 'BackgroundM3').setDepth(BACKGROUND_LAYER_DEPTH);
         // Ajout class
         this.player = new Player(this, 440, 64, 'perso');
         this.boss = new Boss(this, 880, 257).setDepth(BOSS_LAYER_DEPTH);;

@@ -21,8 +21,7 @@ export default class MONDE_3_NIVEAU_2 extends Phaser.Scene {
         const finLayer = map.createLayer("Fin", tileset).setDepth(FIN_LAYER_DEPTH);
         const obstaclesLayer = map.getObjectLayer("Obstacles",);
 
-        this.add.image(0, 0, 'BackgroundM3').setOrigin(0).setDepth(BACKGROUND_LAYER_DEPTH);
-
+        this.bg = new BackgroundM3(this, 0, 0, 'BackgroundM3').setDepth(BACKGROUND_LAYER_DEPTH);
         // Ajout class
         this.player = new Player(this, 32, 360, 'perso');
         this.time.delayedCall(TIME_DOPPELGANGER, () => {
