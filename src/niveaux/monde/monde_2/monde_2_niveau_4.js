@@ -116,7 +116,7 @@ export default class MONDE_2_NIVEAU_4 extends Phaser.Scene{
 	
 
 		  let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde2;
-		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
-		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.timeText.setText(text).setFontFamily('pixelArtPolice').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.deathText.setText(textDeath).setFontFamily('pixelArtPolice').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 	}
 }	

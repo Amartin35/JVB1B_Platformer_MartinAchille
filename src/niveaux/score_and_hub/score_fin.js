@@ -23,13 +23,13 @@ export default class END_JEU_SCENE extends Phaser.Scene {
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(3, "0")}`;
 
 		let textDeath = 'Death : ' + mortsGlobale;
-		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
-		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.timeText.setText(text).setFontFamily('pixelArtPolice').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.deathText.setText(textDeath).setFontFamily('pixelArtPolice').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 
 		// Option pour recommencer tout le jeu
 		const restartText = this.add.text(400, 300, "Restart the game", {
 			fontSize: "24px",
-			fontFamily: "Impact",
+			fontFamily: "pixelArtPolice",
 			color: "#ffffff",
 			align: "center",
 			backgroundColor: "#000000"

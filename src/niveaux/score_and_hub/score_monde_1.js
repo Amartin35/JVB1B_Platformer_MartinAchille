@@ -14,7 +14,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		// Affichage du texte avec le résultat
 		const resultText = this.add.text(400, 200, `You've got ${stars} stars!`, {
 			fontSize: "32px",
-			fontFamily: "Impact", 
+			fontFamily: "pixelArtPolice", 
 			color: "#ffffff",
 			align: "center"
 		});
@@ -27,7 +27,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		// Options pour recommencer ou passer au niveau suivant
 		const restartText = this.add.text(400, 300, "Start the world again", {
 			fontSize: "24px",
-			fontFamily: "Impact",
+			fontFamily: "pixelArtPolice",
 			color: "#ffffff",
 			align: "center",
 			backgroundColor: "#000000"
@@ -53,7 +53,7 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		
 		const nextLevelText = this.add.text(400, 350, "Next world", {
 			fontSize: "24px",
-			fontFamily: "Impact",
+			fontFamily: "pixelArtPolice",
 			color: "#ffffff",
 			align: "center",
 			backgroundColor: "#000000"
@@ -92,8 +92,8 @@ export default class END_MONDE_SCENE1 extends Phaser.Scene {
 		let text = `Time : ${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}.${ms.toString().padStart(3, "0")}`;
 		
 		let textDeath = 'Death : ' + window.myGameValues.NbrMortValuesMonde1;
-		this.timeText.setText(text).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
-		this.deathText.setText(textDeath).setFontFamily('Impact').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.timeText.setText(text).setFontFamily('pixelArtPolice').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
+		this.deathText.setText(textDeath).setFontFamily('pixelArtPolice').setFontSize(25).setDepth(CHRONO_LAYER_DEPTH);
 	}
 	
 	calculateStars() {

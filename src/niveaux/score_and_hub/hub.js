@@ -4,6 +4,7 @@ export default class HUB extends Phaser.Scene {
 	}
   	/////////////////////////////////////// PRELOAD ///////////////////////////////////////
 	preload() {
+		// MAP
 	  const tilemaps = [
 		'map_monde_1_niveau_1',
 		'map_monde_1_niveau_2',
@@ -39,13 +40,17 @@ export default class HUB extends Phaser.Scene {
 		this.load.tilemapTiledJSON(tilemap, tilemapPath(monde, niveau));
 	  });
   
+	  // IMAGE
 	  this.load.image("TileSet", "src/assets/Assets_marioLike.png");
 	  this.load.image("BackgroundM1", "src/assets/BackgroundMonde1.png");
 	  this.load.image("BackgroundM2", "src/assets/BackgroundMonde2.png");
 	  this.load.image("BackgroundM3", "src/assets/BackgroundMonde3.png");
 	  this.load.image("Tuto", "src/assets/SpriteTuto.png");
+	  this.load.image("TutoWallJump", "src/assets/SpriteTutoWallJump.png");
 	  this.load.image("laser", "src/assets/sprite_props/Sprite_asset_laser.png");
   
+
+	  // SPRITE
 	  this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2-sheet.png", {
 		frameWidth: 32,
 		frameHeight: 64
@@ -75,24 +80,29 @@ export default class HUB extends Phaser.Scene {
 		frameHeight: 48
 	  });
   
+	  // SON
 	  this.load.audio('music', 'src/assets/song/Song_of_Ooze.mp3');
+
+	  // VIDEO
 	  this.load.video('video', 'src/assets/video/EcranTitre2.mp4');
+
 	}
   	/////////////////////////////////////// CREATE ///////////////////////////////////////
 	create() {
 	  this.clavier = this.input.keyboard.createCursorKeys();
-	  this.add.text(255, 50, "Ooze Odyssey", {
+	  this.add.text(240, 50, "Ooze Odyssey", {
 		fontSize: "65px",
 		fill: "#fff",
-		fontFamily: "Impact"
+		fontFamily: "pixelArtPolice"
 	  }).setDepth(CHRONO_LAYER_DEPTH);
   
-	  const pressSpaceText = this.add.text(350, 375, "Press SPACE", {
+	  const pressSpaceText = this.add.text(333, 375, "Press SPACE", {
 		fontSize: "32px",
 		fill: "#fff",
-		fontFamily: "Impact"
+		fontFamily: "pixelArtPolice"
 	  }).setDepth(CHRONO_LAYER_DEPTH);
   
+
 	  this.tweens.add({
 		targets: pressSpaceText,
 		alpha: 0,
@@ -120,7 +130,7 @@ export default class HUB extends Phaser.Scene {
   	/////////////////////////////////////// UPDATE ///////////////////////////////////////
 	update() {
 	  if (Phaser.Input.Keyboard.JustDown(this.clavier.space)) {
-		this.scene.start("MONDE_1_NIVEAU_1", {});
+		this.scene.start("MONDE_2_NIVEAU_1", {});
 	  }
 	}
   }

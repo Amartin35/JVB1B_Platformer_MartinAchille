@@ -1,3 +1,9 @@
+@font-face {
+    font-family: pixelArtPolice;
+    src: url('src/assets/fonts/VCRosdNEUE.ttf');
+   
+}
+
 html, body { 
     background: #FFF;
     width: 100%;
