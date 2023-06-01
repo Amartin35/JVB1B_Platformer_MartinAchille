@@ -55,7 +55,7 @@ export default class HUB extends Phaser.Scene {
 		frameWidth: 896,
 		frameHeight: 448
 	  });
-	  this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2-sheet.png", {
+	  this.load.spritesheet("perso", "src/assets/entities/SpriteSheetMainCharacter2-sheet2.png", {
 		frameWidth: 32,
 		frameHeight: 64
 	  });

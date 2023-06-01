@@ -19,7 +19,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		
 		this.direction = "right"; 
 		this.wallJumping = true;
-	
+		this.isNotDeath = true;
 		this.onGround = true;
 		this.isJumping = false;
 		this.positions = [];
@@ -39,19 +39,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 
 		// Déplacement
-		if (this.clavier.up.isDown && this.onGround && !this.isJumping) {
+		if (this.clavier.up.isDown && this.onGround && !this.isJumping && this.isNotDeath) {
 			this.body.setVelocityY(-PLAYER_JUMP);
 			this.isJumping = true;
 		}
 		
-		if (this.clavier.left.isDown) {
+		if (this.clavier.left.isDown&& this.isNotDeath) {
 			this.body.setVelocityX(-PLAYER_SPEED);
 			this.direction = "left";
 			if (this.body.onFloor()) {
 				this.anims.play('run', true);
 			}
 		} 
-		else if (this.clavier.right.isDown) {
+		else if (this.clavier.right.isDown && this.isNotDeath) {
 			this.body.setVelocityX(PLAYER_SPEED);
 			this.direction = "right";
 			if (this.body.onFloor()) {
@@ -60,7 +60,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		} 
 		else {
 			this.body.setVelocityX(0);
-			if (this.body.onFloor()) {
+			if (this.body.onFloor() && this.isNotDeath) {
 				this.anims.play('idle', true);
 			}
 		}
@@ -70,7 +70,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Wall Jump
 		const onWall = this.body.blocked.left || this.body.blocked.right;
 	
-		if (onWall && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump && !this.touchingWorldBounds) {
+		if (onWall && this.clavier.up.isDown && this.wallJumping && window.myGameValues.hasWallJump && !this.touchingWorldBounds && this.isNotDeath) {
 		  this.wallJumping = false;
 		  this.body.setVelocityY(-PLAYER_JUMP);
 		
@@ -97,14 +97,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		  }, 600);
 		}
 		
-		else if (onWall && !this.clavier.up.isDown && window.myGameValues.hasWallJump) {
+		else if (onWall && !this.clavier.up.isDown && window.myGameValues.hasWallJump && this.isNotDeath) {
 			this.body.setVelocityY(-this.body.velocity.y / 4); 
 		}
 
 
 
 		// Gestion des animations
-		if (this.body.velocity.y < 0 && !onWall) {
+		if (this.body.velocity.y < 0 && !onWall && this.isNotDeath) {
 			this.anims.play('jumpUp', true);
 			if (this.direction === "left") {
 				this.flipX = true;
@@ -112,7 +112,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 				this.flipX = false;
 			}
 		} 
-		else if (this.body.velocity.y > 0 && !onWall) {
+		else if (this.body.velocity.y > 0 && !onWall && this.isNotDeath) {
 			this.anims.play('jumpDown', true);
 			if (this.direction === "left") {
 				this.flipX = true;
@@ -120,7 +120,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 				this.flipX = false;
 			}
 		} 
-		else if (onWall && window.myGameValues.hasWallJump && !this.body.blocked.down) {
+		else if (onWall && window.myGameValues.hasWallJump && !this.body.blocked.down && this.isNotDeath) {
 			this.anims.play('wallSlide', true);
 			if (this.direction === "left") {
 				this.flipX = false;
@@ -129,7 +129,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			}
 		}
 		else {
-			if (this.body.onFloor()) {
+			if (this.body.onFloor() && this.isNotDeath) {
 				if (this.clavier.left.isUp && this.clavier.right.isUp) {
 					this.anims.play('idle', true);
 				} else {
@@ -198,6 +198,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			frameRate: 6,
 			repeat: -1
 		});
+
+		this.scene.anims.create({
+			key: 'Death',
+			frames: this.scene.anims.generateFrameNumbers('perso', { start: 35, end: 36 }),
+			frameRate: 12,
+			repeat: -1
+		});
 	}
 
 
@@ -219,10 +226,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 	playerDeath() {
 		// Fonction de kill
+		this.isNotDeath = false;
+		this.anims.play('Death', true);
 		this.scene.cameras.main.shake(200);
-		this.scene.time.delayedCall(100, () => {
+		this.scene.time.delayedCall(200, () => {
 		  this.scene.scene.restart();
-		  
+		  this.isNotDeath = true;
 		  const sceneKey = this.scene.scene.key;
 	  
 		  // Vérifier le nom de la scène pour déterminer où stocker les morts

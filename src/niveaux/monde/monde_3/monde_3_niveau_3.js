@@ -1,5 +1,6 @@
 import Doppelganger from "../../../entities/doppelganger.js";
 import Player from "../../../entities/player.js";
+import BackgroundM3 from "../../../Sprite/backgroundM3.js";
 import Bouton from "../../../Sprite/bouton.js";
 import LaserBas from "../../../Sprite/laserBas.js";
 import Porte from "../../../Sprite/porte.js";

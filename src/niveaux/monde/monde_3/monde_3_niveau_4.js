@@ -1,5 +1,6 @@
 import Boss from "../../../entities/boss.js";
 import Player from "../../../entities/player.js";
+import BackgroundM3 from "../../../Sprite/backgroundM3.js";
 import Bouton from "../../../Sprite/bouton.js";
 
 
